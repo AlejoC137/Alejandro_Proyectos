@@ -1,272 +1,298 @@
 import React, { useState } from "react";
-import "./ProjectForm.css"; // Import CSS file for styling
-import AddField from "./AddField"
+import { postProject } from "../../../redux/actions";
+import { useDispatch } from "react-redux";
+useDispatch
 function ProjectForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    general_properties: {
-      active: "",
-      client: {name:"", contact:''},
-      team: [{ 
-        name: "", 
-        role: "", 
-        contact: "" }]
-    },
-    particular_properties: [{}],
-    media: {
-      img: [{ 
-        name: "" ,
-        reference: "", 
-        description: "", 
-      }],
-      video: [{ 
-        name: "", 
-        reference: "", 
-        description: "", 
-      }]
-    },
-    descriptions: [{ 
-      name: "", 
-      description: "", 
-    }],
-    projectsDates: [{ 
-      landMark: "", 
-      date: "" ,
-    }],
+const dispatch = useDispatch()
+  const [teamCount, setTeamCount] = useState();
+  const [media_imgCount, setMedia_imgCount] = useState();
+  const [media_videoCount, setMedia_videoCount] = useState();
+  const [descriptionCount, setDescriptionCount] = useState();
+  const [datesCount, setDatesCount] = useState();
 
-    roles: [{ 
-      description: "", 
-      dates: { 
-        name: "", 
-        start: "", 
-        end: "" }, 
-      }],
-
-    xrefs: [{ 
-      name:"",
-      content:"", 
-    }],
-    entryAuthor: { name: "ass" }
+  const [fields, setFields] = useState([]);
+  const [fieldCounters, setFieldCounters] = useState({});
+  const [formData,setFormData ] = useState({
+    "projectName":'',
+    "type": "projects",
+    "category":'',
+    "client":'',
+    "team":[],
+    "media":{"img":[],"video":[]},
+    "descriptions":[], //<----- error! 
+    "projectsDates":[], //<----- error! 
+    "entryData":[],
   });
+
+
+  const handleOnBlur = (input, context, subContext , id ) => {
+    // let newFormData;
+    let keys = context.split('.')
+
+    if (subContext) {
+      // Si hay un subContext, se crea un nuevo objeto con la propiedad principal y la propiedad secundaria actualizada
+      if  (keys.length == 2 ){
+
+          formData[keys[0]][keys[1]][id][subContext] = input
+    } else {
+      formData[keys[0]][id][subContext] = input
+
+    }
+      
+    } else {
+      // Si no hay subContext, se actualiza directamente la propiedad principal
+       
+      // console.log('No Context');
+        formData[context] = input
   
-  const [errors, setErrors] = useState({
-    name: "",
-    category: "",
-    // Add other error fields as needed
-  });
+      };
 
-  const updateNestedProperty = (object, keys, value, index = 0) => {
-    if (index === keys.length - 1) {
-      // If the property is an array, append the value to the array
-      if (Array.isArray(object[keys[index]])) {
-        return {
-          ...object,
-          [keys[index]]: [...object[keys[index]], value]
-        };
-      } else {
-        return {
-          ...object,
-          [keys[index]]: value
-        };
-      }
+      console.log(formData);
     }
   
-    const key = keys[index];
-    const updatedNested = {
-      ...object[key],
-      [keys[index + 1]]: value
-    };
+  const createObjectInCategory = (objConfig) => {
+    const { mainProperty, subProperties } = objConfig;
   
-    return {
-      ...object,
-      [key]: updateNestedProperty(object[key], keys, value, index + 1)
-    };
+    // Dividir la cadena mainProperty para obtener las claves
+    const keys = mainProperty.split('.');
+  
+    // Referencia al objeto formData
+    let target = formData;
+  
+    // Iterar sobre las claves para acceder a la ubicación correcta en el objeto formData
+    for (const key of keys) {
+      target = target[key];
+    }
+  
+    // Crear el nuevo objeto con las propiedades especificadas en subProperties
+    const newObject = {};
+    for (const prop of subProperties) {
+      newObject[prop] = '';
+    }
+  
+    // Agregar el nuevo objeto al lugar correcto dentro de formData
+    target.push(newObject);
+  
+    // Puedes devolver formData si es necesario
+    // return formData;
+    // console.log(formData); ;
   };
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-  
-    // Split the name into nested properties
-    const keys = name.split('.');
-    const updatedFormData = updateNestedProperty(formData, keys, value);
-  
-    setFormData(updatedFormData);
+  const addField = (fieldConfig) => {
+
+    createObjectInCategory(fieldConfig);
+    const subInputs = fieldConfig.subProperties.map((subProperty, index) => (
+      <input
+        key={index}
+        type="text"
+        placeholder={getFieldSectionLabel(subProperty)}
+        onChange={(e) => console.log(e.target.value)}
+        onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty , subProperty , currentCount )}}
+        />
+    ));
+
+    if (subInputs.length === 0) {
+      subInputs.push(
+        <input
+          key={0}
+          type="text"
+          placeholder={getFieldSectionLabel(fieldConfig.mainProperty)}
+          onChange={(e) => console.log(e.target.value)}
+          onBlur={(e) => console.log(e.target.value)}
+        />
+      );
+    }
+
+    const fieldKey = fieldConfig.mainProperty;
+    const currentCount = fieldCounters[fieldKey] || 0;
+
+    setFields([
+      ...fields,
+      <div key={fields.length} className={fieldKey}>
+
+<p>
+          {getFieldSectionLabel(fieldConfig.mainProperty)}
+          {' '}
+          {currentCount + 1}
+        </p>
+        {subInputs.map((input, index) => (
+          <div key={index}>
+            <label>{fieldConfig.placeholder}</label>
+            <label>{`${getFieldSectionLabel(fieldConfig.subProperties[index])}: `}</label>
+            {input}
+          </div>
+        ))}
+
+      </div>
+    ]);
+
+    setFieldCounters({ ...fieldCounters, [fieldKey]: currentCount + 1 });
+
+
+    console.log(formData); // Placeholder for sending data to backend
+
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validation logic before submitting can be added here
-    console.log("Form submitted:", formData);
-    // history.push(""); // --> redirect to link the wifi link
+    e.preventDefault(); // Prevent default form submission behavior
+
+
+    // dispatch(
+      postProject(formData)
+      // )
+
   };
 
-  function findArraysOfObjects(obj, prefix = '') {
-    let results = {};
-  
-    for (let key in obj) {
-      let currentPrefix = prefix ? `${prefix}.${key}` : key;
-  
-      if (Array.isArray(obj[key]) && obj[key].length > 0 && typeof obj[key][0] === 'object') {
-        // Array of objects found
-        results[currentPrefix] = Object.keys(obj[key][0]);
-        // Check for nested objects within the array
-        obj[key].forEach((item, index) => {
-          let nestedResults = findArraysOfObjects(item, `${currentPrefix}[${index}]`);
-          results = { ...results, ...nestedResults };
-        });
-      } else if (typeof obj[key] === 'object') {
-        // Nested object, continue recursion
-        let nestedResults = findArraysOfObjects(obj[key], currentPrefix);
-        results = { ...results, ...nestedResults };
-      }
+  const ableToAddField = [
+    { order: 4, mainProperty: "team", subProperties: ["name", "role", "contact"] },
+    { order: 5, mainProperty: "media.img", subProperties: ["name", "URL", "description"] },
+    { order: 6, mainProperty: "media.video", subProperties: ["name", "URL", "description"] },
+    { order: 7, mainProperty: "descriptions", subProperties: ["name", "type", "description"] },
+    { order: 8, mainProperty: "projectsDates", subProperties: ["date", "landMark"] },
+    { order: 9, mainProperty: "roles", subProperties: ["description", "role_tittle", "dates.start", "dates.end"] },
+  ];
+
+  const staticField = [
+    { order: 1, mainProperty: "projectName", subProperties: [] },
+    { order: 3, mainProperty: "client", subProperties: [] },
+    { order: 10, mainProperty: "entryData", subProperties: ["authorName"] },
+  ];
+  const selectField = [
+    { order: 2, mainProperty: "category", options: ['arch', 'code' , 'soci'] },
+  ];
+
+  const getFieldSectionLabel = (mainProperty) => {
+    switch (mainProperty) {
+
+      case 'team':
+        return 'Equipo';
+      case 'media.img':
+        return 'Imagen';
+      case 'media.video':
+        return 'Video';
+      case 'descriptions':
+        return 'Descripciones';
+      case 'description':
+        return 'Descripción';
+      case 'projectsDates':
+        return 'Fechas del Proyecto';
+      case 'roles':
+        return 'Rol';
+      case 'role':
+        return 'Rol';
+      case 'projectName':
+        return 'Nombre Del Proyecto';
+      case 'category':
+        return 'Categoría';
+      case 'client':
+        return 'Cliente';
+      case 'entryData':
+        return 'Datos de Publicación';
+      case 'authorName':
+        return 'Autor de la Publicación';
+      case 'date':
+        return 'Fecha';
+      case 'landMark':
+        return 'Hito';
+      case 'contact':
+        return 'Contacto';
+      case 'type':
+        return 'Tipo';
+      case 'name':
+        return 'Nombre';
+      case "dates.start":
+        return 'Fecha Inicio';
+      case "dates.end":
+        return 'Fecha Final';
+      case "role_tittle":
+        return 'Cargo';
+      case "arch":
+        return 'Arquitectura';
+      case "code":
+        return 'Programación';
+      case "soci":
+        return 'Impacto Social';
+
+      default:
+        return mainProperty;
     }
-  
-    return results;
-  }
-
-  const keyOfArrayOfObjects = findArraysOfObjects(formData)
-
-  const handleChangeArrayField = (fieldName, index, fieldValue) => {
-    // Create a copy of formData
-    const updatedFormData = { ...formData };
-  
-    // Update the value of the field at the specified index
-    updatedFormData[fieldName][index] = fieldValue;
-  
-    // Update the formData state
-    setFormData(updatedFormData);
   };
 
+  const renderStaticFields = () => {
+    return staticField
+      .sort((a, b) => a.order - b.order)
+      .map((fieldConfig, index) => (
+        <div key={index} className={fieldConfig.mainProperty}>
+          {fieldConfig.subProperties.length === 0 ?
+            <div>
+              <label>{getFieldSectionLabel(fieldConfig.mainProperty)}</label>
+              <input
+                type="text"
+                placeholder={getFieldSectionLabel(fieldConfig.mainProperty)}
+                // onChange={(e) => console.log(e.target.value)}
+                onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty )}}
+              />
+            </div>
+            :
+            <>
+              {fieldConfig.subProperties.map((subProperty, index) => (
+                <div key={index}>
+                  <label>{getFieldSectionLabel(subProperty)}</label>
+                  
+                <div key={index+0.1}>
+                  <input
+                    type="text"
+                    placeholder={getFieldSectionLabel(subProperty)}
+                    onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty )}}
+                    // onBlur={}
+                  />
+                  
+                </div>
+                </div>
+              ))}
+            </>
+          }
+        </div>
+      ));
+  };
+  const renderSelectFields = () => {
+    return selectField
+      .sort((a, b) => a.order - b.order)
+      .map((fieldConfig, index) => (
+        <div key={index} className={fieldConfig.mainProperty}>
+          <label>{getFieldSectionLabel(fieldConfig.mainProperty)}</label>
+          <select onChange={(e) => console.log(e.target.value)}
+                          onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty )}}
 
-  const composeFields = []
-  for (let key in keyOfArrayOfObjects) {
-   composeFields.push(
-    <AddField 
-    key={key}
-    name={key}
-    valueref={keyOfArrayOfObjects[key]}
-    onchangefield={(fieldName, index, fieldValue) => handleChangeArrayField(fieldName, index, fieldValue)}
-
-    />
-   )
-   
-
-
-
-
-  }
-
-
-
+          >
+            {fieldConfig.options.map((option, index) => (
+              <option key={index} value={option}>{getFieldSectionLabel(option)}</option>
+            ))}
+          </select>
+        </div>
+      ));
+  };
+  
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
 
-{/* NAME FIELD */}
-        <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            onChange={handleChange}
-          />
-          {/* Add validation error display if needed */}
+        <div>
+          {renderStaticFields()}
+          {renderSelectFields()}
+
+          {ableToAddField.map((fieldConfig, index) => (
+            <div key={index}>
+              <button type="button" onClick={() => addField(fieldConfig)}>
+                Add Field for {getFieldSectionLabel(fieldConfig.mainProperty)}
+              </button>
+              {fields.filter(field => field.props.className === fieldConfig.mainProperty)}
+            </div>
+          ))}
         </div>
-
-{/* AUTOR ENTRY FIELD */}
-        <div className="form-group">
-          <label>Entry Author Name:</label>
-          <input
-            type="text"
-            name="entryAuthor.name"
-            onChange={handleChange}
-          />
-          {/* Add validation error display if needed */}
-        </div>
-
-
-        <label>Properties:</label>
-{/* CLIENT ENTRY FIELDS */}
-
-        <div className="form-group">
-          <label>Client Name:</label>
-          <input
-            type="text"
-            name="general_properties.client"
-            onChange={handleChange}
-          />
-          {/* Add validation error display if needed */}
-        </div>
-
-
-
-        <div className="form-group">
-          <label>Client Contact:</label>
-          <input
-            type="text"
-            name="general_properties.client"
-            onChange={handleChange}
-          />
-          {/* Add validation error display if needed */}
-        </div>
-
-        <div className="form-group">
-          <label>Description type:</label>
-          <input
-            type="text"
-            name="descriptions"
-            fieldtarget="description"
-            // onChange={handleChangeObjectForArray}
-          />
-          {/* Add validation error display if needed */}
-        </div>
-
-
-        <div className="form-group">
-          <label>Descripcion:</label>
-          <textarea
-            type="text"
-            name="descriptions"
-            fieldtarget="description"
-            index= {0}
-            // onChange={handleChangeObjectForArray}
-            // onBlur={handleChangeObjectForArray}
-          />
-          {/* Add validation error display if needed */}
-        </div>
-
-
-        
-        <div className="form-group">
-          <label>Category:</label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-          >
-
-            <option value="">Select a category</option>
-            <option value="arch">Architecture</option>
-            <option value="code">Coding</option>
-            <option value="soci">Social</option>
-          </select>
-          {/* Add validation error display if needed */}
-        </div>
-        {/* Add other form fields */}
+        <button type="submit">Submit</button>
       </form>
-      <div >
-      {composeFields}
-      </div>
-        <button 
-        onClick={handleSubmit}
-        type="submit">Submit</button>
-
-        {/* <button onClick={()=>{console.log(formData.descriptions);}}>Test formData</button> */}
     </div>
   );
-  
-  
 }
 
 export default ProjectForm;

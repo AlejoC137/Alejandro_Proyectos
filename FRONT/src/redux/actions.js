@@ -2,9 +2,11 @@ import {
   POST_A_PROJECT,
   GET_ALL_PROJECTS,
   SET_LENGUAJE,
+  SET_VISITOR,
 } from "./actions-types";
 
 import axios from "axios";
+import { useSelector } from "react-redux";
 // import Swal from "swal"
 import Swal from "sweetalert2";
 
@@ -28,29 +30,38 @@ export function getAllProjects(category) {
       }
   };
 }
+export function prePostProject(proyectToBePosted) {
+
+    
+  
+            return dispatch({
+                type: POST_A_PROJECT,
+                payload: proyectToBePosted,
+            });          
+
+      
+    };
 
 
-export function postProject() {
-
-  return function (dispatch) {
-      try {
-          axios
-              .post("/postProject" , {project})
-              .then((data) => {
-                  Swal.fire("Comentario creado exitosamente");
-                  return dispatch({
-                      type: POST_A_PROJECT,
-                      payload: data,
-                  });
-              })
-              .catch((error) => {
-                  Swal.fire(error.response.data.error);
-              });
-      } catch (error) {
-          console.log(error.message);
-      }
-  };
-}
+    export async function  postProject(projectData) {
+// console.log(projectData);
+        // return  function (dispatch) {
+            try {
+                await axios.post('/project' , projectData);
+                // console.log(JSON.stringify(projectData));
+                // return dispatch({
+                    // type: POST_A_PROJECT,
+                    // payload: proje\ctData,
+                // })
+            } catch (error) {
+                console.log(error.message)
+            }
+               
+              
+           
+        // };
+      
+    }
 
 
 export function setLenguaje(lenguaje) {
@@ -63,6 +74,27 @@ export function setLenguaje(lenguaje) {
                         payload: lenguaje,
                
                 })
+                .catch((error) => {
+  console.log(error);             
+   });
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+  }
+export function setVisitor( visitorName ) {
+        return function (dispatch) {
+        try {
+  
+                    return dispatch({
+                        type: SET_VISITOR,
+                        payload: [
+                            visitorName,
+                            // visitorTag,
+                       ]
+               
+                })
+            
                 .catch((error) => {
   console.log(error);             
    });

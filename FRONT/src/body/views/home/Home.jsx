@@ -8,13 +8,17 @@ function Home() {
     const dispatch = useDispatch();
     
     useEffect( () => {
-        // dispatch()
     } , [] );
+    const Visitor = useSelector(state => state.visitorData);
+    console.log(Visitor);
+   
+
 
     const [collection, setCollection] = useState('');
     const [selectedProjects, setSelectedProjects] = useState([]);
 
     const Projects = useSelector(state => state.allProjects);
+    // const Visitor = useSelector(state => state.visitorData);
 
     const onPressHandler = (value) => {
         // Handle press action
@@ -32,6 +36,7 @@ function Home() {
             <button onClick={() => onPressHandler('code')}>CODING</button>
             <button onClick={() => onPressHandler('soci')}>SOCIAL</button>
       </div>
+      <div>{Visitor !== ''? Visitor : 'ANON USER'}</div>
       <div>
       <Cards 
       currentPAD={Projects} 
