@@ -133,8 +133,23 @@ function Card(props) {
       <h5 
       // className="h-14 mt-2 text-xl font-bold font-gobold tracking-tight text-gray-900 dark:text-white"
       >
-      {props.name}
+      {props.projectName}
+      {/* {props.descriptions} */}
+
       </h5>
+      <img
+            // className=
+            src={
+              props.media.img[0]
+                ? props.media.img[0].URL
+                : "https://humanconet.org/wp-content/uploads/2022/09/Anchincaya-Resiste-HC-01-1024x1024.webp"
+            }
+            // alt={
+            //   props.media.img[0].description
+            //     ?props.media.img[0].description
+            //     :'sup'
+            // }
+          />
     </div>
   )
 }

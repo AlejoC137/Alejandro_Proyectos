@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -68,8 +74,4 @@ button:focus-visible {
 } */
 
 
-body {
-  background-color: rgba(255, 255, 255, 1); /* Adjust the alpha value (0.5 for 50% transparency) */
-  /* background-image: url("https://res.cloudinary.com/denjiview/image/upload/v1710820489/BASES-01_szeihv.png"); */
-  background-size:300px;
-}
+

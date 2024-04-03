@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/Montserrat-VariableFont_wght.ttf') 
+  /* format(''); */
+  /* Add other font formats if necessary */
+}
+/* https://www.magicpattern.design/tools/css-backgrounds */
+.hatch {
+  background-color: #e5e5f7;
+  opacity: 1;
+  background-image: radial-gradient(#000000 0.5px, #ffffff 0.5px);
+  background-size: 10px 10px;
+  height: 100vh; 
+  }
+

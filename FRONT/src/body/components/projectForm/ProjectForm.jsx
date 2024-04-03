@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { postProject } from "../../../redux/actions";
 import { useDispatch } from "react-redux";
-useDispatch
+
 function ProjectForm() {
 const dispatch = useDispatch()
   const [teamCount, setTeamCount] = useState();
@@ -283,7 +283,7 @@ const dispatch = useDispatch()
           {ableToAddField.map((fieldConfig, index) => (
             <div key={index}>
               <button type="button" onClick={() => addField(fieldConfig)}>
-                Add Field for {getFieldSectionLabel(fieldConfig.mainProperty)}
+                Añadir campo para {getFieldSectionLabel(fieldConfig.mainProperty)}
               </button>
               {fields.filter(field => field.props.className === fieldConfig.mainProperty)}
             </div>

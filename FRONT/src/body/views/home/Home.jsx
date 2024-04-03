@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProjects, postProject } from '../../../redux/actions';
 import Cards from '../../components/cards/Cards.jsx'
+import styles from './Home.module.css';
+import NavBar from "../../components/navBar/NavBar.jsx";
+import InfoCol from "../../components/infoCol/InfoCol.jsx";
+
 function Home() {
     const dispatch = useDispatch();
     
@@ -25,21 +29,19 @@ function Home() {
         setCollection(value)
         setSelectedProjects( dispatch( getAllProjects(value) ) )  
         console.log(Projects);
+
       };
       
     
 
     return (
     <div>
-      <div>
-            <button onClick={() => onPressHandler('arch')}>ARCHITECTURE</button>
-            <button onClick={() => onPressHandler('code')}>CODING</button>
-            <button onClick={() => onPressHandler('soci')}>SOCIAL</button>
-      </div>
-      <div>{Visitor !== ''? Visitor : 'ANON USER'}</div>
+      <NavBar></NavBar>
+      <InfoCol></InfoCol>
+     
       <div>
       <Cards 
-      currentPAD={Projects} 
+      ProjectsCollectio={Projects} 
       // PAD =  {Projects}
         />
 
