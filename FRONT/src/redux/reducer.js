@@ -3,7 +3,8 @@ import {
     POST_A_PROJECT,
     GET_ALL_PROJECTS,
     SET_LENGUAJE,
-    SET_VISITOR
+    SET_VISITOR,
+    SET_NAV_OPTION,
     
   } from "./actions-types";
   
@@ -12,6 +13,7 @@ import {
     projectToBePosted: {},
     currentLenguaje: 'ES',
     visitorData:'',
+    navBarOption:'',
 
     
   };
@@ -36,10 +38,17 @@ import {
               ...state,
               currentLenguaje: action.payload,
             };
+            
         case SET_VISITOR:
             return {
               ...state,
               visitorData: action.payload,
+            };
+
+        case SET_NAV_OPTION:
+            return {
+              ...state,
+              navBarOption: action.payload,
             };
 
 

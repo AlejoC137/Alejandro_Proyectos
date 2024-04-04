@@ -7,6 +7,11 @@ import Cards from '../../components/cards/Cards.jsx'
 import styles from './Home.module.css';
 import NavBar from "../../components/navBar/NavBar.jsx";
 import InfoCol from "../../components/infoCol/InfoCol.jsx";
+import {
+  CODE,
+  SOCI,
+  ARCH,
+} from "../../../redux/actions-types.js";
 
 function Home() {
     const dispatch = useDispatch();
@@ -38,14 +43,11 @@ function Home() {
     <div>
       <NavBar></NavBar>
       <InfoCol></InfoCol>
-     
-      <div>
       <Cards 
       ProjectsCollectio={Projects} 
       // PAD =  {Projects}
         />
 
-      </div>
     </div>
     );
 }

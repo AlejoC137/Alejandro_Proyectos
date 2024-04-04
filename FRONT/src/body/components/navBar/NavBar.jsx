@@ -2,13 +2,31 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './NavBar.module.css';
+import {
+  CODE,
+  SOCI,
+  ARCH,
+  ALE,
+} from "../../../redux/actions-types.js";
+import { setNavBarOption } from "../../../redux/actions.js";
+
+
+
+
 export default function NavBar() {
   const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.userAuth);
   const [userInfo, setUserInfo] = useState(false);
-  const [active, setActive] = useState('arch');
   const Visitor = useSelector(state => state.visitorData);
-  
+  const navBarOption = useSelector(state => state.navBarOption);
+
+
+  const handleOnClick = (e) => {
+
+dispatch(setNavBarOption(e))
+// console.log(e;
+
+  }
 
   return (
     <nav 
@@ -21,10 +39,10 @@ export default function NavBar() {
 
             
             {/* <Link to={`/aboutUs`} className='w-64'> */}
-            <li className={active == 'ale' ? styles.hatch1 : styles.hatch2}>
+            <li className={navBarOption == ALE ? styles.hatch1 : styles.hatch2}>
                 <button
                 className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{setActive('ale')}}
+                onClick={()=>{handleOnClick(ALE)}}
 
                 >
                 <div
@@ -42,10 +60,10 @@ export default function NavBar() {
 
 
             {/* <Link to={`/aboutUs`} className='w-64'> */}
-            <li className={active == 'soci' ? styles.hatch1 : styles.hatch2}>
+            <li className={navBarOption == SOCI ? styles.hatch1 : styles.hatch2}>
                 <button
                 className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{setActive('soci')}}
+                onClick={()=>{handleOnClick(SOCI)}}
 
                 >
                 <div
@@ -62,10 +80,10 @@ export default function NavBar() {
 <br></br>
 
             {/* <Link to={`/aboutUs`}> */}
-            <li className={active == 'arch' ? styles.hatch1 : styles.hatch2}>
+            <li className={navBarOption == ARCH ? styles.hatch1 : styles.hatch2}>
                 <button
                 className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{setActive('arch')}}
+                onClick={()=>{handleOnClick(ARCH)}}
 
                 >
                 <div
@@ -83,10 +101,12 @@ export default function NavBar() {
 
 
             {/* <Link to={`/aboutUs`}> */}
-            <li className={active == 'code' ? styles.hatch1 : styles.hatch2}>
+            <li className={navBarOption == CODE ? styles.hatch1 : styles.hatch2}>
                 <button
                 className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{setActive('code')}}
+                onClick={()=>{handleOnClick(CODE)}}
+
+
                 >
                 <div
                 className="font-Montserrat font-bold  text-8xl flex flex-col">

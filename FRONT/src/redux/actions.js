@@ -3,6 +3,7 @@ import {
   GET_ALL_PROJECTS,
   SET_LENGUAJE,
   SET_VISITOR,
+  SET_NAV_OPTION,
 } from "./actions-types";
 
 import axios from "axios";
@@ -29,7 +30,8 @@ export function getAllProjects(category) {
           console.log(error.message);
       }
   };
-}
+    };
+
 export function prePostProject(proyectToBePosted) {
 
     
@@ -42,8 +44,7 @@ export function prePostProject(proyectToBePosted) {
       
     };
 
-
-    export async function  postProject(projectData) {
+export async function  postProject(projectData) {
 // console.log(projectData);
         // return  function (dispatch) {
             try {
@@ -61,8 +62,7 @@ export function prePostProject(proyectToBePosted) {
            
         // };
       
-    }
-
+    };
 
 export function setLenguaje(lenguaje) {
 
@@ -81,7 +81,8 @@ export function setLenguaje(lenguaje) {
             console.log(error.message);
         }
     };
-  }
+    };
+
 export function setVisitor( visitorName ) {
         return function (dispatch) {
         try {
@@ -102,4 +103,20 @@ export function setVisitor( visitorName ) {
             console.log(error.message);
         }
     };
-  }
+    };
+
+export function setNavBarOption( option ) {
+        return function (dispatch) {
+        try {
+  
+                    return dispatch({
+                        type: SET_NAV_OPTION,
+                        payload: option
+                })
+            
+
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+    };
