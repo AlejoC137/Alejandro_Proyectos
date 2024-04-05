@@ -14,7 +14,7 @@ import {
     projectToBePosted: {},
     currentLenguaje: 'ES',
     visitorData:'',
-    navBarOption:'',
+    MenuBarOption:'',
     mainProfile:{},
 
     
@@ -50,7 +50,7 @@ import {
         case SET_NAV_OPTION:
             return {
               ...state,
-              navBarOption: action.payload,
+              MenuBarOption: action.payload,
             };
         case GET_MAIN_PROFILE:
             return {

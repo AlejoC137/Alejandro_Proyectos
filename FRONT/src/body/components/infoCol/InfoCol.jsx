@@ -11,12 +11,12 @@ export default function InfoCol() {
         dispatch(getMainProfile());
     }, []);
 
-    const navBarOption = useSelector(state => state.navBarOption);
+    const MenuBarOption = useSelector(state => state.MenuBarOption);
     const mainProfile = useSelector(state => state.mainProfile);
 
     let infoToDisplay = '';
 
-    switch (navBarOption) {
+    switch (MenuBarOption) {
         case SOCI:
             infoToDisplay = mainProfile.definition[0].soci;
             break;

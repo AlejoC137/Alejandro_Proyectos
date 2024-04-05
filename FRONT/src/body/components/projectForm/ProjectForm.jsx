@@ -23,6 +23,7 @@ const dispatch = useDispatch()
     "descriptions":[],
     "projectsDates":[], 
     "entryData":[],
+    "roles":[],
   });
 
   const ableToAddField = [
@@ -97,59 +98,36 @@ const dispatch = useDispatch()
     // console.log(formData); ;
   };
   const addField = (fieldConfig) => {
-
     createObjectInCategory(fieldConfig);
+  
     const subInputs = fieldConfig.subProperties.map((subProperty, index) => (
-      <input
-        key={index}
-        type="text"
-        placeholder={getFieldSectionLabel(subProperty)}
-        onChange={(e) => console.log(e.target.value)}
-        onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty , subProperty , currentCount )}}
-        />
-    ));
-
-    if (subInputs.length === 0) {
-      subInputs.push(
+      <div key={index} className="mr-3">
         <input
-          key={0}
+          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
           type="text"
-          placeholder={getFieldSectionLabel(fieldConfig.mainProperty)}
-          onChange={(e) => console.log(e.target.value)}
-          onBlur={(e) => console.log(e.target.value)}
+          placeholder={getFieldSectionLabel(subProperty)}
+          onBlur={(e) => { handleOnBlur(e.target.value, fieldConfig.mainProperty) }}
         />
-      );
-    }
-
+      </div>
+    ));
+  
     const fieldKey = fieldConfig.mainProperty;
     const currentCount = fieldCounters[fieldKey] || 0;
-
+  
     setFields([
       ...fields,
       <div key={fields.length} className={fieldKey}>
-
-<p>
-          {getFieldSectionLabel(fieldConfig.mainProperty)}
-          {' '}
-          {currentCount + 1}
-        </p>
-        {subInputs.map((input, index) => (
-          <div key={index}>
-            <label>{fieldConfig.placeholder}</label>
-            <label>{`${getFieldSectionLabel(fieldConfig.subProperties[index])}: `}</label>
-            {input}
-          </div>
-        ))}
-
+        <p>{getFieldSectionLabel(fieldConfig.mainProperty)} {currentCount + 1}</p>
+        <div className="flex">
+          {subInputs}
+        </div>
       </div>
     ]);
-
+  
     setFieldCounters({ ...fieldCounters, [fieldKey]: currentCount + 1 });
-
-
-    console.log(formData); // Placeholder for sending data to backend
-
+    console.log(formData);
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -284,8 +262,12 @@ const dispatch = useDispatch()
           {renderSelectFields()}
 
           {ableToAddField.map((fieldConfig, index) => (
-            <div key={index}>
-              <button type="button" onClick={() => addField(fieldConfig)}>
+            <div 
+            className=""
+            key={index}>
+              <button 
+              className="mt-3 ml-3 w-96  bg-pureRed border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+              type="button" onClick={() => addField(fieldConfig)}>
                 Añadir campo para {getFieldSectionLabel(fieldConfig.mainProperty)}
               </button>
               {fields.filter(field => field.props.className === fieldConfig.mainProperty)}

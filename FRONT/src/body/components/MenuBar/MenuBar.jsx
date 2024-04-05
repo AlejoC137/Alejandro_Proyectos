@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import styles from './NavBar.module.css';
+import styles from './MenuBar.module.css';
 import {
   CODE,
   SOCI,
   ARCH,
   ALE,
 } from "../../../redux/actions-types.js";
-import { getAllProjects, setNavBarOption } from "../../../redux/actions.js";
+import { getAllProjects, setMenuBarOption } from "../../../redux/actions.js";
 
 
 
 
-export default function NavBar() {
+export default function MenuBar() {
   const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.userAuth);
   const [userInfo, setUserInfo] = useState(false);
   const Visitor = useSelector(state => state.visitorData);
-  const navBarOption = useSelector(state => state.navBarOption);
+  const MenuBarOption = useSelector(state => state.MenuBarOption);
 
 
   const handleOnClick = (e) => {
 
-dispatch(setNavBarOption(e))
+dispatch(setMenuBarOption(e))
 // console.log(e;
 
   }
@@ -40,7 +40,7 @@ dispatch(setNavBarOption(e))
 
 
             {/* <Link to={`/aboutUs`} className='w-64'> */}
-            <li className={navBarOption == SOCI ? styles.hatch1 : styles.hatch2}>
+            <li className={MenuBarOption == SOCI ? styles.hatch1 : styles.hatch2}>
                 <button
                 className=" border-pureRed   border-4    w-64 p-2"
                 onClick={()=>{handleOnClick(SOCI)}}
@@ -60,7 +60,7 @@ dispatch(setNavBarOption(e))
 <br></br>
 
             {/* <Link to={`/aboutUs`}> */}
-            <li className={navBarOption == ARCH ? styles.hatch1 : styles.hatch2}>
+            <li className={MenuBarOption == ARCH ? styles.hatch1 : styles.hatch2}>
                 <button
                 className=" border-pureRed   border-4    w-64 p-2"
                 onClick={()=>{handleOnClick(ARCH)}}
@@ -81,7 +81,7 @@ dispatch(setNavBarOption(e))
 
 
             {/* <Link to={`/aboutUs`}> */}
-            <li className={navBarOption == CODE ? styles.hatch1 : styles.hatch2}>
+            <li className={MenuBarOption == CODE ? styles.hatch1 : styles.hatch2}>
                 <button
                 className=" border-pureRed   border-4    w-64 p-2"
                 onClick={()=>{handleOnClick(CODE)}}

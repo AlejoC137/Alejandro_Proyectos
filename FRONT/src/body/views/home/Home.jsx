@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProjects, postProject, getMainProfile } from '../../../redux/actions';
 import Cards from '../../components/cards/Cards.jsx'
 import styles from './Home.module.css';
-import NavBar from "../../components/navBar/NavBar.jsx";
+import MenuBar from "../../components/MenuBar/MenuBar.jsx";
 import MainCharacterDisplayInfo from "../../components/mainCharacterDisplayInfo/MainCharacterDisplayInfo.jsx";
 import InfoCol from "../../components/infoCol/InfoCol.jsx";
 import {
@@ -41,7 +41,7 @@ function Home() {
       <div
       className="flex"
       >
-      <NavBar></NavBar>
+      <MenuBar></MenuBar>
       <InfoCol
       className='h-72'
       ></InfoCol>

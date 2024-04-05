@@ -8,7 +8,7 @@ import {
   ARCH,
   ALE,
 } from "../../../redux/actions-types.js";
-import { getMainProfile, setNavBarOption } from "../../../redux/actions.js";
+import { getMainProfile, setMenuBarOption } from "../../../redux/actions.js";
 
 export default function MainCharacterDisplayInfo() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function MainCharacterDisplayInfo() {
   const mainProfile = useSelector(state => state.mainProfile);
 
   const handleOnClick = (e) => {
-    dispatch(setNavBarOption(e))
+    dispatch(setMenuBarOption(e))
     console.log(mainProfile)
   }
 
@@ -34,22 +34,18 @@ export default function MainCharacterDisplayInfo() {
      
       <div className="flex">
         
-      <div className="font-Montserrat font-bold text-8xl flex flex-col m-2">
-      {mainProfile.media && mainProfile.media.img && mainProfile.media.img[0] && (
-        <img 
-          className="rounded-full w-20 h-20 
-          
-          object-cover filter grayscale"
-          src={mainProfile.media.img[0].URL ? mainProfile.media.img[0].URL : ''} 
-          alt={mainProfile.media.img[0].description} 
-        />
-      )}     
-       </div>
      
       <div className="font-Montserrat font-bold text-8xl flex flex-col">
         {mainProfile.profileNickName ? mainProfile.profileNickName : ''}
       </div>
       
+      <div className="font-Montserrat font-bold text-8xl flex flex-col m-2">
+      {mainProfile.media && mainProfile.media.img && mainProfile.media.img[0] && (
+      <img className="rounded-full w-20 h-20 object-cover filter grayscale"
+          src={mainProfile.media.img[0].URL ? mainProfile.media.img[0].URL : ''} 
+          alt={mainProfile.media.img[0].description}/>)}     
+       </div>
+       
       <div className="font-Montserrat font-bold text-1 flex flex-col m-2">
         {mainProfile.descriptions ? mainProfile.descriptions[0].description : ''}
       </div>

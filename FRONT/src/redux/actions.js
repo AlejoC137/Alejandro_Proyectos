@@ -110,7 +110,7 @@ export function setVisitor( visitorName ) {
     };
     };
 
-// export function setNavBarOption( option ) {
+// export function setMenuBarOption( option ) {
 //         return function (dispatch) {
 //         try {
   
@@ -126,7 +126,7 @@ export function setVisitor( visitorName ) {
 //     };
 //     };
 
-export function setNavBarOption(option) {
+export function setMenuBarOption(option) {
     return function (dispatch) {
       try {
         dispatch({
