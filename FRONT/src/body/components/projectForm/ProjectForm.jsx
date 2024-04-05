@@ -114,20 +114,30 @@ const dispatch = useDispatch()
     const fieldKey = fieldConfig.mainProperty;
     const currentCount = fieldCounters[fieldKey] || 0;
   
-    setFields([
-      ...fields,
+    const newField = (
       <div key={fields.length} className={fieldKey}>
         <p>{getFieldSectionLabel(fieldConfig.mainProperty)} {currentCount + 1}</p>
         <div className="flex">
           {subInputs}
         </div>
+        <button
+          className="mt-3 ml-3 w-64 h-10 bg-gray-200 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+          onClick={() => removeField(fields.length)}
+        >
+          Eliminar
+        </button>
       </div>
-    ]);
+    );
   
+    setFields([...fields, newField]);
     setFieldCounters({ ...fieldCounters, [fieldKey]: currentCount + 1 });
     console.log(formData);
   };
   
+  
+const removeField = (indexToRemove) => {
+  setFields(fields.filter((_, index) => index !== indexToRemove));
+};
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
