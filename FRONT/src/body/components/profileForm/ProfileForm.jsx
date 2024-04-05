@@ -14,12 +14,18 @@ const dispatch = useDispatch()
   const [fieldCounters, setFieldCounters] = useState({});
 
   const [formData,setFormData ] = useState({
-    "profileName":'',
+    "profileFullName":'',
+    "profileNickName":'',
+    "profileInitials":'',
+    "socialMedia":[], 
+    "bio":[],
     "contact":[],
     "type": "info",
+    "character": "main",
     "category":'profiles',
     "media":{"img":[],"video":[]},
     "descriptions":[], 
+    "definition":[], 
     "achievements":[],
     "education":[],
     "jobs":[],
@@ -30,24 +36,31 @@ const dispatch = useDispatch()
 
   const ableToAddField = [
     { order: 4, mainProperty: "contact", subProperties: ["cellphone", "email", "website",'location'] },
+    { order: 4, mainProperty: "socialMedia", subProperties: ["name", "link", "user",'icon'] },
+    { order: 10, mainProperty: "bio", subProperties: ["bio","age", "birth", "heigth", "weight",'gender', ] },
     { order: 5, mainProperty: "media.img", subProperties: ["name", "URL", "description"] },
     { order: 6, mainProperty: "media.video", subProperties: ["name", "URL", "description"] },
     { order: 7, mainProperty: "descriptions", subProperties: ["name", "type", "description"] },
     { order: 8, mainProperty: "achievements", subProperties: ["date", "name", 'description'] },
     { order: 9, mainProperty: "education", subProperties: ["description", "education_tittle", "dates.start", "dates.end"] },
-    { order: 9, mainProperty: "jobs", subProperties: ["description", "job_tittle", "dates.start", "dates.end"] },
-    { order: 9, mainProperty: "skills", subProperties: ["name", "state", "dates.start"] },
-    { order: 9, mainProperty: "volunteering", subProperties: ["description", "volunteering_tittle", "dates.start", "dates.end"] },
+    { order: 11, mainProperty: "definition", subProperties: ["arch", "soci", "code"] },
+    { order: 12, mainProperty: "jobs", subProperties: ["description", "job_tittle", "dates.start", "dates.end"] },
+    { order: 13, mainProperty: "skills", subProperties: ["name", "state", "dates.start"] },
+    { order: 14, mainProperty: "volunteering", subProperties: ["description", "volunteering_tittle", "dates.start", "dates.end"] },
   ];
 
   const staticField = [
-    { order: 1, mainProperty: "profileName", subProperties: [] },
+    { order: 1, mainProperty: "profileFullName", subProperties: [] },
+    { order: 1, mainProperty: "profileNickName", subProperties: [] },
+    { order: 1, mainProperty: "profileInitials", subProperties: [] },
     // { order: 3, mainProperty: "client", subProperties: [] },
     // { order: 10, mainProperty: "entryData", subProperties: ["authorName"] },
   ];
   
   const selectField = [
-    // { order: 2, mainProperty: "category", options: ['arch', 'code' , 'soci'] },
+    { order: 2, mainProperty: "animeCharater", options: [
+      // 'main'
+      , 'client' , 'teamMate' , 'boss'] },
   ];
 
 

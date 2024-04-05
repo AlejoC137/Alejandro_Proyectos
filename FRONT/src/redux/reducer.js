@@ -5,6 +5,7 @@ import {
     SET_LENGUAJE,
     SET_VISITOR,
     SET_NAV_OPTION,
+    GET_MAIN_PROFILE,
     
   } from "./actions-types";
   
@@ -14,6 +15,7 @@ import {
     currentLenguaje: 'ES',
     visitorData:'',
     navBarOption:'',
+    mainProfile:{},
 
     
   };
@@ -49,6 +51,11 @@ import {
             return {
               ...state,
               navBarOption: action.payload,
+            };
+        case GET_MAIN_PROFILE:
+            return {
+              ...state,
+              mainProfile: action.payload,
             };
 
 

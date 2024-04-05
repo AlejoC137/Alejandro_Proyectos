@@ -1,0 +1,28 @@
+.hatch1 {
+    /* background-color: #e5e5f7; */
+    opacity: 1;
+    width: 600px; /* Added a space before the semicolon for consistency */
+    border: 5px solid #ff0000; /* Added 'solid' to specify the border style */
+    background-size: 10px 10px;
+    background-image: repeating-linear-gradient(45deg, #ff00005f 0, #ff00005f 1px, #ffffff 0, #ffffff 50%);
+    /* Corrected the second #FFFFFF to #ffffff for consistency */
+    margin-left: 16px;
+}
+/* .hatch1 { */
+    /* background-color: #e5e5f7; */
+    /* background-color: #e5e5f7; */
+    /* opacity: 1; */
+    /* background-image: radial-gradient(#ff0000 0.8px, #ffffff 0.8px); */
+    /* background-size: 10px 10px; */
+    /* width: 600px ; */
+    /* } */
+
+/* .hatch2 { */
+    /* background-color: #e5e5f7; */
+    /* background-color: #e5e5f7; */
+    /* opacity: 1; */
+    /* background-image: radial-gradient(#000000 0.6px, #ffffff 0.6px); */
+    /* background-size: 10px 10px; */
+    /* width: 600px ; */
+    
+    /* } */

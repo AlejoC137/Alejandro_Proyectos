@@ -8,7 +8,7 @@ import {
   ARCH,
   ALE,
 } from "../../../redux/actions-types.js";
-import { setNavBarOption } from "../../../redux/actions.js";
+import { getAllProjects, setNavBarOption } from "../../../redux/actions.js";
 
 
 
@@ -29,32 +29,12 @@ dispatch(setNavBarOption(e))
   }
 
   return (
-    <nav 
+    <nav className=" ml-4" 
     >
-<br></br>
      
         
         
      <ul >
-
-            
-            {/* <Link to={`/aboutUs`} className='w-64'> */}
-            <li className={navBarOption == ALE ? styles.hatch1 : styles.hatch2}>
-                <button
-                className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{handleOnClick(ALE)}}
-
-                >
-                <div
-                className="font-Montserrat font-bold text-8xl flex flex-col">
-                ALE
-                </div>
-                <div className="font text-2xl flex flex-col">
-                 HOLA, {`${Visitor}`}
-                </div>
-                </button>
-              </li>
-            {/* </Link> */}
 
 <br></br>
 

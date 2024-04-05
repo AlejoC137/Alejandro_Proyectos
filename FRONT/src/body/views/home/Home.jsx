@@ -2,10 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProjects, postProject } from '../../../redux/actions';
+import { getAllProjects, postProject, getMainProfile } from '../../../redux/actions';
 import Cards from '../../components/cards/Cards.jsx'
 import styles from './Home.module.css';
 import NavBar from "../../components/navBar/NavBar.jsx";
+import MainCharacterDisplayInfo from "../../components/mainCharacterDisplayInfo/MainCharacterDisplayInfo.jsx";
 import InfoCol from "../../components/infoCol/InfoCol.jsx";
 import {
   CODE,
@@ -14,35 +15,39 @@ import {
 } from "../../../redux/actions-types.js";
 
 function Home() {
-    const dispatch = useDispatch();
-    
+  
+  const dispatch = useDispatch();
     useEffect( () => {
+
+      dispatch(getMainProfile())
+
     } , [] );
+
+    
     const Visitor = useSelector(state => state.visitorData);
-    console.log(Visitor);
+
    
 
-
-    const [collection, setCollection] = useState('');
-    const [selectedProjects, setSelectedProjects] = useState([]);
-
     const Projects = useSelector(state => state.allProjects);
-    // const Visitor = useSelector(state => state.visitorData);
-
-    const onPressHandler = (value) => {
-        // Handle press action
-        setCollection(value)
-        setSelectedProjects( dispatch( getAllProjects(value) ) )  
-        console.log(Projects);
-
-      };
-      
     
+    console.log(Projects);    
 
     return (
-    <div>
+    <div className="flex">
+<div>
+        <br></br>
+
+      <MainCharacterDisplayInfo></MainCharacterDisplayInfo>
+      <div
+      className="flex"
+      >
       <NavBar></NavBar>
-      <InfoCol></InfoCol>
+      <InfoCol
+      className='h-72'
+      ></InfoCol>
+      </div>
+
+</div>
       <Cards 
       ProjectsCollectio={Projects} 
       // PAD =  {Projects}

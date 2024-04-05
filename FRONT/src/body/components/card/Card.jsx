@@ -129,16 +129,19 @@ function Card(props) {
   // );
 
   return(
-    <div>
+    <div
+    className=" border-pureRed   border-4 "
+    >
+    
       <h5 
-      // className="h-14 mt-2 text-xl font-bold font-gobold tracking-tight text-gray-900 dark:text-white"
-      >
+                
+                >
       {props.projectName}
       {/* {props.descriptions} */}
 
       </h5>
       <img
-            // className=
+            className='p-3 border-2'
             src={
               props.media.img[0]
                 ? props.media.img[0].URL

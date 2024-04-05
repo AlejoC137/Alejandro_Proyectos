@@ -4,6 +4,11 @@ import {
   SET_LENGUAJE,
   SET_VISITOR,
   SET_NAV_OPTION,
+  GET_MAIN_PROFILE,
+  CODE,
+  SOCI,
+  ARCH,
+
 } from "./actions-types";
 
 import axios from "axios";
@@ -20,8 +25,8 @@ export function getAllProjects(category) {
     
       try {
         // /project?collection=soci
-          const projects = await axios.get(`/project?collection=${category}`);
-          // console.log(projects.data);
+          const projects = await axios.get(`/project?db=projects&collection=${category}`);
+        //   console.log(projects.data);
           return dispatch({
               type: GET_ALL_PROJECTS,
               payload: projects.data,
@@ -105,16 +110,68 @@ export function setVisitor( visitorName ) {
     };
     };
 
-export function setNavBarOption( option ) {
-        return function (dispatch) {
-        try {
+// export function setNavBarOption( option ) {
+//         return function (dispatch) {
+//         try {
   
-                    return dispatch({
-                        type: SET_NAV_OPTION,
-                        payload: option
-                })
+//                     return dispatch({
+//                         type: SET_NAV_OPTION,
+//                         payload: option
+//                 })
             
 
+//         } catch (error) {
+//             console.log(error.message);
+//         }
+//     };
+//     };
+
+export function setNavBarOption(option) {
+    return function (dispatch) {
+      try {
+        dispatch({
+          type: SET_NAV_OPTION,
+          payload: option,
+        });
+  
+        // Mapping the option to the corresponding category
+        let category;
+        switch (option) {
+          case 'ARCH':
+            category = 'arch';
+            break;
+          case 'SOCI':
+            category = 'soci';
+            break;
+          case 'CODE':
+            category = 'code';
+            break;
+          default:
+            category = '';
+            break;
+        }
+  
+        // Dispatching getAllProjects with the determined category
+        if (category !== '') {
+          dispatch(getAllProjects(category));
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  }
+
+export function getMainProfile() {
+    return async function (dispatch) {
+    
+        try {
+          // /project?collection=soci
+            const projects = await axios.get(`info?db=info&collection=profiles`);
+            // console.log();
+            return dispatch({
+                type: GET_MAIN_PROFILE,
+                payload: projects.data[0],
+            });          
         } catch (error) {
             console.log(error.message);
         }

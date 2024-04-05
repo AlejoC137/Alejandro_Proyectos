@@ -1,13 +1,18 @@
 import React from 'react';
 import Card from '../card/Card.jsx';
+import { useSelector } from 'react-redux';
 
 function Cards(props) {
-  
-  // const activePADs = props.currentPAD.filter((PAD) => PAD.active === true);
-  const activeProjects = props.ProjectsCollectio
+  // useSelector
 
+  const activeProjects = useSelector(state => state.allProjects);
+
+  // const activePADs = props.currentPAD.filter((PAD) => PAD.active === true);
+  // const activeProjects = props.ProjectsCollectio
+console.log(activeProjects);
   return (
     <div className="overflow-y-hidden">
+        <br></br>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 px-4 ">
         {activeProjects.map((PROJECT) => (
           <Card

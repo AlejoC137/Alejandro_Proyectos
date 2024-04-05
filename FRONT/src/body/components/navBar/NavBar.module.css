@@ -1,14 +1,34 @@
+/* .hatch1 { */
+    /* background-color: #e5e5f7; */
+    /* opacity: 1; */
+
+    /* background-size: 10px 10px; */
+    /* background-image: repeating-linear-gradient(45deg, #ff00005f 0, #ff00005f 1px, #ffffff 0, #FFFFFF 50%); */
+    /* width: 255px ; */
+    /* } */
+/* .hatch2 { */
+    /* background-color: #e5e5f7; */
+    /* opacity: 1; */
+    /* background-size: 10px 10px; */
+    /* background-image: repeating-linear-gradient(45deg, #9e9e9e64 0, #9e9e9e64 1px, #ffffff 0, #FFFFFF 50%); */
+    /* width: 255px ; */
+    /* } */
+
 .hatch1 {
     /* background-color: #e5e5f7; */
+    background-color: #e5e5f7;
     opacity: 1;
+    background-image: radial-gradient(#ff0000 0.8px, #ffffff 0.8px);
     background-size: 10px 10px;
-    background-image: repeating-linear-gradient(45deg, #ff00005f 0, #ff00005f 1px, #ffffff 0, #FFFFFF 50%);
     width: 255px ;
     }
+
 .hatch2 {
     /* background-color: #e5e5f7; */
+    background-color: #e5e5f7;
     opacity: 1;
+    background-image: radial-gradient(#000000 0.6px, #ffffff 0.6px);
     background-size: 10px 10px;
-    background-image: repeating-linear-gradient(45deg, #9e9e9e64 0, #9e9e9e64 1px, #ffffff 0, #FFFFFF 50%);
     width: 255px ;
+    
     }

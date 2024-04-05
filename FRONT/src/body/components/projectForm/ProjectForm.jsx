@@ -12,6 +12,7 @@ const dispatch = useDispatch()
 
   const [fields, setFields] = useState([]);
   const [fieldCounters, setFieldCounters] = useState({});
+  
   const [formData,setFormData ] = useState({
     "projectName":'',
     "type": "projects",
@@ -19,10 +20,28 @@ const dispatch = useDispatch()
     "client":'',
     "team":[],
     "media":{"img":[],"video":[]},
-    "descriptions":[], //<----- error! 
-    "projectsDates":[], //<----- error! 
+    "descriptions":[],
+    "projectsDates":[], 
     "entryData":[],
   });
+
+  const ableToAddField = [
+    { order: 4, mainProperty: "team", subProperties: ["name", "role", "contact"] },
+    { order: 5, mainProperty: "media.img", subProperties: ["name", "URL", "description"] },
+    { order: 6, mainProperty: "media.video", subProperties: ["name", "URL", "description"] },
+    { order: 7, mainProperty: "descriptions", subProperties: ["name", "type", "description"] },
+    { order: 8, mainProperty: "projectsDates", subProperties: ["date", "landMark"] },
+    { order: 9, mainProperty: "roles", subProperties: ["description", "role_tittle", "dates.start", "dates.end"] },
+  ];
+
+  const staticField = [
+    { order: 1, mainProperty: "projectName", subProperties: [] },
+    { order: 3, mainProperty: "client", subProperties: [] },
+    { order: 10, mainProperty: "entryData", subProperties: ["authorName"] },
+  ];
+  const selectField = [
+    { order: 2, mainProperty: "category", options: ['arch', 'code' , 'soci'] },
+  ];
 
 
   const handleOnBlur = (input, context, subContext , id ) => {
@@ -142,23 +161,7 @@ const dispatch = useDispatch()
 
   };
 
-  const ableToAddField = [
-    { order: 4, mainProperty: "team", subProperties: ["name", "role", "contact"] },
-    { order: 5, mainProperty: "media.img", subProperties: ["name", "URL", "description"] },
-    { order: 6, mainProperty: "media.video", subProperties: ["name", "URL", "description"] },
-    { order: 7, mainProperty: "descriptions", subProperties: ["name", "type", "description"] },
-    { order: 8, mainProperty: "projectsDates", subProperties: ["date", "landMark"] },
-    { order: 9, mainProperty: "roles", subProperties: ["description", "role_tittle", "dates.start", "dates.end"] },
-  ];
 
-  const staticField = [
-    { order: 1, mainProperty: "projectName", subProperties: [] },
-    { order: 3, mainProperty: "client", subProperties: [] },
-    { order: 10, mainProperty: "entryData", subProperties: ["authorName"] },
-  ];
-  const selectField = [
-    { order: 2, mainProperty: "category", options: ['arch', 'code' , 'soci'] },
-  ];
 
   const getFieldSectionLabel = (mainProperty) => {
     switch (mainProperty) {
