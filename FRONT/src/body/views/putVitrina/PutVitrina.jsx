@@ -4,7 +4,7 @@ import  PutVitrinaForm  from "../../components/putVitrinaForm/PutVitrinaForm";
 function PutVitrina() {
   return (
     <div>
-      <h2>Project Entry Form</h2>
+      {/* <h2>Project Entry Form</h2> */}
       {/* Render the FormWifi component */}
       <PutVitrinaForm />
     </div>

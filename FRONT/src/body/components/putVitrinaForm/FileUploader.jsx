@@ -22,7 +22,7 @@ function FileUploader  ({ handleFile }) {
   return (
     <>
       <button className="button-upload" onClick={handleClick}>
-        Upload a file
+      🖼
       </button>
       <input
         type="file"

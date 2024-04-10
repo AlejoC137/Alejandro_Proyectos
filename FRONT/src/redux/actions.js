@@ -179,15 +179,19 @@ export function getMainProfile() {
     };
     };
 
-export function putProject(updatedProjectData) {
+export function patchVitrina() {
       return async function (dispatch) {
         try {
-          const response = await axios.put('/putProject', updatedProjectData);
+          const responseDel = await axios.delete('/delvitrina');
+
+          
+
+          // console.log(response);
           Swal.fire('Proyecto actualizado exitosamente');
-          return dispatch({
-            type: PUT_PROJECT,
-            payload: response.data, // You may or may not need to dispatch the updated project data
-          });
+          // return dispatch({
+            // type: PUT_PROJECT,
+            // payload: response.data, // You may or may not need to dispatch the updated project data
+          // });
         } catch (error) {
           Swal.fire(error.response.data.error);
         }
