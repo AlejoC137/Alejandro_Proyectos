@@ -4,6 +4,7 @@ export const SET_LENGUAJE = "SET_LENGUAJE";
 export const SET_VISITOR = "SET_VISITOR";
 export const SET_NAV_OPTION = "SET_NAV_OPTION";
 export const GET_MAIN_PROFILE = "GET_MAIN_PROFILE";
+export const PUT_PROJECT = 'PUT_PROJECT';
 
 
 export const CODE = "CODE";

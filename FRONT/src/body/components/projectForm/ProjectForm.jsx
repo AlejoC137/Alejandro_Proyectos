@@ -41,7 +41,7 @@ const dispatch = useDispatch()
     { order: 10, mainProperty: "entryData", subProperties: ["authorName"] },
   ];
   const selectField = [
-    { order: 2, mainProperty: "category", options: ['arch', 'code' , 'soci'] },
+    { order: 2, mainProperty: "category", options: ['arch', 'code' , 'soci' , 'come'] },
   ];
 
 
@@ -115,16 +115,17 @@ const dispatch = useDispatch()
     const currentCount = fieldCounters[fieldKey] || 0;
   
     const newField = (
+      
       <div key={fields.length} className={fieldKey}>
-        <p>{getFieldSectionLabel(fieldConfig.mainProperty)} {currentCount + 1}</p>
-        <div className="flex">
+        <p className="ml-3">{getFieldSectionLabel(fieldConfig.mainProperty)} {currentCount + 1}</p>
+        <div className="flex ml-3">
           {subInputs}
         </div>
         <button
           className="mt-3 ml-3 w-64 h-10 bg-gray-200 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
           onClick={() => removeField(fields.length)}
         >
-          Eliminar
+          ELIMINAR CAMPO
         </button>
       </div>
     );
@@ -155,53 +156,53 @@ const removeField = (indexToRemove) => {
     switch (mainProperty) {
 
       case 'team':
-        return 'Equipo';
+        return 'Equipo:';
       case 'media.img':
-        return 'Imagen';
+        return 'Imagen:';
       case 'media.video':
-        return 'Video';
+        return 'Video:';
       case 'descriptions':
-        return 'Descripciones';
+        return 'Descripciones:';
       case 'description':
-        return 'Descripción';
+        return 'Descripción:';
       case 'projectsDates':
-        return 'Fechas del Proyecto';
+        return 'Fechas del Proyecto:';
       case 'roles':
-        return 'Rol';
+        return 'Rol:';
       case 'role':
-        return 'Rol';
+        return 'Rol:';
       case 'projectName':
-        return 'Nombre Del Proyecto';
+        return 'Nombre Del Proyecto:';
       case 'category':
-        return 'Categoría';
+        return 'Categoría:';
       case 'client':
-        return 'Cliente';
+        return 'Nombre del Cliente:';
       case 'entryData':
-        return 'Datos de Publicación';
+        return 'Datos de Publicación:';
       case 'authorName':
-        return 'Autor de la Publicación';
+        return 'Autor de la Publicación:';
       case 'date':
-        return 'Fecha';
+        return 'Fecha:';
       case 'landMark':
-        return 'Hito';
+        return 'Hito:';
       case 'contact':
-        return 'Contacto';
+        return 'Contacto:';
       case 'type':
-        return 'Tipo';
+        return 'Tipo:';
       case 'name':
-        return 'Nombre';
+        return 'Nombre:';
       case "dates.start":
-        return 'Fecha Inicio';
+        return 'Fecha Inicio:';
       case "dates.end":
-        return 'Fecha Final';
+        return 'Fecha Final:';
       case "role_tittle":
-        return 'Cargo';
+        return 'Cargo:';
       case "arch":
-        return 'Arquitectura';
+        return 'Arquitectura:';
       case "code":
-        return 'Programación';
+        return 'Programación:';
       case "soci":
-        return 'Impacto Social';
+        return 'Impacto Social:';
 
       default:
         return mainProperty;
@@ -214,30 +215,26 @@ const removeField = (indexToRemove) => {
       .map((fieldConfig, index) => (
         <div key={index} className={fieldConfig.mainProperty}>
           {fieldConfig.subProperties.length === 0 ?
-            <div>
-              <label>{getFieldSectionLabel(fieldConfig.mainProperty)}</label>
+            <div className="ml-3 ">
+              <label className="block text-gray-700 text-sm font-bold mb-2">{getFieldSectionLabel(fieldConfig.mainProperty)}</label>
               <input
                 type="text"
+                className="border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
                 placeholder={getFieldSectionLabel(fieldConfig.mainProperty)}
-                // onChange={(e) => console.log(e.target.value)}
-                onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty )}}
+                onBlur={(e) => { handleOnBlur(e.target.value, fieldConfig.mainProperty) }}
               />
             </div>
             :
             <>
               {fieldConfig.subProperties.map((subProperty, index) => (
-                <div key={index}>
-                  <label>{getFieldSectionLabel(subProperty)}</label>
-                  
-                <div key={index+0.1}>
+                <div key={index} className="ml-3">
+                  <label className="block  text-gray-700 text-sm font-bold mb-2">{getFieldSectionLabel(subProperty)}</label>
                   <input
                     type="text"
+                    className="border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
                     placeholder={getFieldSectionLabel(subProperty)}
-                    onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty )}}
-                    // onBlur={}
+                    onBlur={(e) => { handleOnBlur(e.target.value, fieldConfig.mainProperty) }}
                   />
-                  
-                </div>
                 </div>
               ))}
             </>
@@ -250,10 +247,11 @@ const removeField = (indexToRemove) => {
       .sort((a, b) => a.order - b.order)
       .map((fieldConfig, index) => (
         <div key={index} className={fieldConfig.mainProperty}>
-          <label>{getFieldSectionLabel(fieldConfig.mainProperty)}</label>
-          <select onChange={(e) => console.log(e.target.value)}
-                          onBlur={(e)=>{ handleOnBlur(e.target.value , fieldConfig.mainProperty )}}
-
+          <label className="block ml-3 text-gray-700 text-sm font-bold mb-2">{getFieldSectionLabel(fieldConfig.mainProperty)}</label>
+          <select 
+            className="border ml-3 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+            onChange={(e) => console.log(e.target.value)}
+            onBlur={(e) => { handleOnBlur(e.target.value, fieldConfig.mainProperty) }}
           >
             {fieldConfig.options.map((option, index) => (
               <option key={index} value={option}>{getFieldSectionLabel(option)}</option>
@@ -276,15 +274,17 @@ const removeField = (indexToRemove) => {
             className=""
             key={index}>
               <button 
-              className="mt-3 ml-3 w-96  bg-pureRed border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+              className="mt-3 ml-3 w-96   bg-amber-100 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
               type="button" onClick={() => addField(fieldConfig)}>
-                Añadir campo para {getFieldSectionLabel(fieldConfig.mainProperty)}
+                AÑADIR CAMPO PARA:{getFieldSectionLabel(fieldConfig.mainProperty)}
               </button>
               {fields.filter(field => field.props.className === fieldConfig.mainProperty)}
             </div>
           ))}
         </div>
-        <button type="submit">Submit</button>
+        <button
+          className="mt-3  border-3 border-solid  border-y-gray-950 ml-3 w-64 h-10 bg-red-200 rounded-md p-2 focus:outline-none focus:border-blue-500"
+        type="submit">ENVIAR PROYECTO</button>
       </form>
     </div>
   );

@@ -35,6 +35,7 @@ export default function MainCharacterDisplayInfo() {
       <div className="flex">
         
      
+
       <div className="font-Montserrat font-bold text-8xl flex flex-col">
         {mainProfile.profileNickName ? mainProfile.profileNickName : ''}
       </div>
@@ -45,9 +46,12 @@ export default function MainCharacterDisplayInfo() {
           src={mainProfile.media.img[0].URL ? mainProfile.media.img[0].URL : ''} 
           alt={mainProfile.media.img[0].description}/>)}     
        </div>
-       
+
       <div className="font-Montserrat font-bold text-1 flex flex-col m-2">
         {mainProfile.descriptions ? mainProfile.descriptions[0].description : ''}
+<Link to={mainProfile.descriptions ? mainProfile.descriptions[0].ref : ''} className="font-Montserrat font-bold text-l flex flex-col border-4 corner flex-center border-pureRed rounded-md">
+  CLICK HERE TO DOWNLOAD CV
+</Link>
       </div>
 
 

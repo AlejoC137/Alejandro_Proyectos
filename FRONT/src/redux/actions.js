@@ -5,6 +5,7 @@ import {
   SET_VISITOR,
   SET_NAV_OPTION,
   GET_MAIN_PROFILE,
+  PUT_PROJECT,
   CODE,
   SOCI,
   ARCH,
@@ -177,3 +178,18 @@ export function getMainProfile() {
         }
     };
     };
+
+export function putProject(updatedProjectData) {
+      return async function (dispatch) {
+        try {
+          const response = await axios.put('/putProject', updatedProjectData);
+          Swal.fire('Proyecto actualizado exitosamente');
+          return dispatch({
+            type: PUT_PROJECT,
+            payload: response.data, // You may or may not need to dispatch the updated project data
+          });
+        } catch (error) {
+          Swal.fire(error.response.data.error);
+        }
+      };
+    }
