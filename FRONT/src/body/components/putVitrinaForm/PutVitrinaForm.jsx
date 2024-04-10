@@ -64,20 +64,16 @@ import { patchVitrina ,postProject } from "../../../redux/actions.js";
 function PutVitrinaForm() {
   const [fileName, setFileName] = useState("");
   const [vitrinaImage, setVitrinaImage] = useState("");
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState('https://res.cloudinary.com/denjiview/image/upload/v1710996709/PERCHERO_02-02_g4pqcy.png');
   const [isLoading, setIsLoading] = useState(false);
-  const [imageDescription, setImageDescription] = useState('b');
+  const [imageDescription, setImageDescription] = useState('');
   
   const dispatch = useDispatch();
   const cloudName = 'denjiview'; // Replace 'your_cloud_name' with your Cloudinary cloud name
   const cloudPreset = 'itjhsbrs'; // Replace 'your_cloud_name' with your Cloudinary cloud name
 
-  const handleUpload = (file) => {
-
-  };
-
-  const handleUpdate = () => {
-    // Dispatch action to update the project data
+  const handleDecription = (e) => {
+    setImageDescription(e.target.value)
   };
 
 
@@ -150,47 +146,13 @@ function PutVitrinaForm() {
     // setIsLoading(true);
   
     try {
-    //   let imageURL;
-    //   if (
-    //     vitrinaImage && (
-    //       vitrinaImage.type === 'image/png' ||
-    //       vitrinaImage.type === 'image/jpg' ||
-    //       vitrinaImage.type === 'image/jpeg'
-    //     )
-    //   ) {
-    //     const image = new FormData();
-    //     image.append('file', vitrinaImage);
-    //     image.append('cloud_name', `${cloudName}`);
-    //     image.append('upload_preset', `${cloudPreset}`);
-  
-    //     const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, image);
-  
-    //     // If uploading image was successful, execute patchVitrina()
+    
          dispatch(
 
            patchVitrina()
          )
   
-    //     // Once patchVitrina() is done, execute postProject()
-    //     await postProject({
-    //       projectName: "Proyecto Café Web",
-    //       type: "info",
-    //       category: "active",
-    //       img: {
-    //         name: "vitrina",
-    //         URL: `${response.data.url}`,
-    //         description: `${imageDescription}`
-    //       }
-    //     });
-  
-    //     // After both patchVitrina() and postProject() are done, perform any additional tasks
-    //     // ...
-  
-    //     // You can also dispatch any actions or handle state updates here if needed
-  
-    //     // Show success message or perform any other UI actions
-    //     // Swal.fire('Proyecto actualizado y cargado exitosamente');
-    //   }
+    //   
     } catch (error) {
       // console.log(error);
       // Swal.fire('Error al cargar la imagen', error.message, 'error');
@@ -249,41 +211,72 @@ function PutVitrinaForm() {
     }
   };
   
-  const handleFile = (file) => {
-    // setFileName(file.name);
-    // handleUpload(file);
-  };
 
   return (
-    <div>
+    <div 
+    className="  flex flex-col justify-center items-center	"
+    >
       <br />
+      <div
+      className=" rounded-lg  flex-col justify-center items-center w-72 border-2 border-emerald-500 m-6 flex"
+      >
       <label>Elimar imagen anterior:</label>
       <button onClick={delImage} >❌</button>
-      <br />
+
+
+      </div>
+      <div
+      className=" rounded-lg flex-col justify-center items-center w-72 border-2 border-emerald-500 m-6 flex"
+      >
+
       <label>Seleccionar image:</label>
       <FileUploader handleFile={handleImageChange} />
-      <br />
+
+        </div>
+
+        <div
+      className=" rounded-lg flex flex-col justify-center items-center w-72 border-2 border-emerald-500 m-8 flex-col"
+      >
+
+          <img 
+          src={`${imagePreview}`}
+          alt='' 
+          className="p-2"
+          />
+
+<label 
+className=" rounded-lg flex flex-col justify-center items-center "
+>DESCRIBE LA IMAGEN:</label>
+<textarea type="text" className="   rounded-lg  mb-3 flex flex-col justify-center items-center border-sky-800 border-2 " onBlur={handleDecription} />
+
+      </div>
+
+      <div
+      className="  rounded-lg flex-col justify-center items-center w-72 border-2 border-emerald-500 m-6 flex"
+      >
       {
-      isLoading ? 
-      ('Cargando...')  :
+        isLoading ? 
+        ('Cargando...')  :
         (
           <>
           
-          <label>Cargar Imagen: </label>
+          <label
+
+          >Cargar Imagen: </label>
           <button onClick={uploadImage} >⬆️</button>
           
           </>
 
         )
       }
-      <div>
-        {/* {imagePreview &&  */}
-        {/* ( */}
-          <img src={`${imagePreview}`}
-          alt='' />
-        {/* ) */}
-        {/* } */}
-      </div>
+        </div>
+
+
+
+      
+
+
+
     </div>
   );
 }
