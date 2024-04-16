@@ -167,11 +167,11 @@ export function getMainProfile() {
     
         try {
           // /project?collection=soci
-            const projects = await axios.get(`info?db=info&collection=profiles`);
-            // console.log();
+            const projects = await axios.get(`/infomain`);
+            // console.log(projects.data);
             return dispatch({
                 type: GET_MAIN_PROFILE,
-                payload: projects.data[0],
+                payload: projects.data,
             });          
         } catch (error) {
             console.log(error.message);
