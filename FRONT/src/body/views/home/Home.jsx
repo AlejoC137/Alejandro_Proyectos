@@ -2,10 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProjects, postProject, getMainProfile } from '../../../redux/actions';
+import { getAllProjects, postProject, getMainProfile, getMaindefinitions } from '../../../redux/actions';
 import Cards from '../../components/cards/Cards.jsx'
 import styles from './Home.module.css';
 import MenuBar from "../../components/MenuBar/MenuBar.jsx";
+import InfoBar from "../../components/InfoBar/InfoBar.jsx";
 import MainCharacterDisplayInfo from "../../components/mainCharacterDisplayInfo/MainCharacterDisplayInfo.jsx";
 import InfoCol from "../../components/infoCol/InfoCol.jsx";
 import {
@@ -14,14 +15,15 @@ import {
   ARCH,
 } from "../../../redux/actions-types.js";
 
+
 function Home() {
   
   const dispatch = useDispatch();
-    useEffect( () => {
+  useEffect( () => {
 
-      dispatch(getMainProfile())
+    dispatch(getMaindefinitions())
 
-    } , [] );
+  } , [] );  
 
     
     const Visitor = useSelector(state => state.visitorData);
@@ -29,8 +31,9 @@ function Home() {
    
 
     const Projects = useSelector(state => state.allProjects);
-    
-    // console.log(Projects);    
+    const MenuBarOption = useSelector(state => state.MenuBarOption);
+    const definitions = useSelector(state => state.mainDefinitions);
+    // console.log(definitions);    
 
     return (
     <div className="flex">
@@ -41,17 +44,18 @@ function Home() {
       <div
       className="flex"
       >
-      <MenuBar></MenuBar>
-      <InfoCol
-      className='h-72'
-      ></InfoCol>
+      <MenuBar
+      definitions={definitions}
+      ></MenuBar>
+  
+
       </div>
 
 </div>
       <div>
       <br></br>
       <Cards 
-      ProjectsCollectio={Projects} 
+      PROJECT={Projects} 
       // PAD =  {Projects}
       />
       </div>

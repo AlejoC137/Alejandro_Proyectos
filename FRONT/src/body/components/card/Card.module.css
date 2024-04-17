@@ -1,0 +1,22 @@
+.grayscale {
+    filter: grayscale(100%);
+  }
+
+  .hatch1 {
+    /* background-color: #e5e5f7; */
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image: radial-gradient(#ff0000 0.8px, #ffffff 0.8px);
+    background-size: 10px 10px;
+    width: 255px ;
+    }
+
+.hatch2 {
+    /* background-color: #e5e5f7; */
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image: radial-gradient(#000000 0.6px, #ffffff 0.6px);
+    background-size: 10px 10px;
+    width: 255px ;
+    
+    }

@@ -6,6 +6,7 @@ import {
   SET_NAV_OPTION,
   GET_MAIN_PROFILE,
   GET_PROJECTS_BY_ID,
+  GET_MAIN_DEFINITIONS,
   PUT_PROJECT,
   CODE,
   SOCI,
@@ -183,11 +184,27 @@ export function getMainProfile() {
     
         try {
           // /project?collection=soci
-            const projects = await axios.get(`/infomain`);
+            const mainProfile = await axios.get(`/infomain`);
             // console.log(projects.data);
             return dispatch({
-                type: GET_MAIN_PROFILE,
-                payload: projects.data,
+              type: GET_MAIN_PROFILE,
+              payload:mainProfile.data,
+            });          
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+    };
+export function getMaindefinitions() {
+    return async function (dispatch) {
+    
+        try {
+          // /project?collection=soci
+            const mainProfile = await axios.get(`/infomain`);
+            // console.log(mainProfile.data.definitions);
+            return dispatch({
+                type: GET_MAIN_DEFINITIONS,
+                payload: mainProfile.data.definitions,
             });          
         } catch (error) {
             console.log(error.message);

@@ -31,9 +31,14 @@ export default function InfoCol() {
     }
 
     return (
-        <div className="flex flex-col justify-between mt-6">
+        <div 
+        // className="flex flex-col justify-between mt-6 w-96"
+        >
             {/* <br /> */}
-            <div className="border-pureRed ml-6 border-4 flex-1 w-80 p-2 overflow-y-auto">
+            <div 
+            className="bg-black"
+            // className="border-black border-b-2  border-l-0 border-t-0 w-64 p-2"
+            >
                 {infoToDisplay}
             </div>
             {/* <br /> */}

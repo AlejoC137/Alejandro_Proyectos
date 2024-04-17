@@ -28,12 +28,12 @@ export default function NavBar() {
   }, [Visitor]);
 
   return (
-    <nav className="border-b-2 bg-opacity-50 bg-gray-100 tra">
+    <nav className="border-b-2 border-black bg-opacity-50 bg-gray-100 tra">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link>
           <li className="font-Montserrat font-bold text-8xl flex flex-col">
             <button className="md:dark:hover:text-pureRed font-Montserrat font-bold text-4xl flex flex-col">
-              HI, {Visitor} {specialHi} {mainProfile.profileNickName ? mainProfile.profileNickName : ''}
+              PORTAFOLIO {Visitor} {specialHi} {mainProfile.profileNickName ? mainProfile.profileNickName : ''}
             </button>
           </li>
         </Link>
@@ -48,6 +48,7 @@ export default function NavBar() {
 
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
+            
             <Link to={`/home`}>
               <li>
                 <button className="block py-2 pl-3 pr-4 text-black rounded font-Montserrat hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-black md:dark:hover:text-pureRed dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent">
@@ -59,7 +60,17 @@ export default function NavBar() {
             <Link>
               <li>
                 <button className="block py-2 pl-3 pr-4 text-black rounded font-Montserrat hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-black md:dark:hover:text-pureRed dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent">
-                  Proyectos
+                  SOBRE MI
+                </button>
+              </li>
+            </Link>
+
+            <Link
+              to={`/newproject`}
+            >
+              <li>
+                <button className="block py-2 pl-3 pr-4 text-black rounded font-Montserrat hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-black md:dark:hover:text-pureRed dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent">
+                  INGRESAR PROYECTOS
                 </button>
               </li>
             </Link>
@@ -67,18 +78,12 @@ export default function NavBar() {
             <Link>
               <li>
                 <button className="block py-2 pl-3 pr-4 text-black rounded font-Montserrat hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-black md:dark:hover:text-pureRed dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent">
-                  Documentales
+                  
                 </button>
               </li>
             </Link>
 
-            <Link>
-              <li>
-                <button className="block py-2 pl-3 pr-4 text-black rounded font-Montserrat hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-black md:dark:hover:text-pureRed dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent">
-                  Unete
-                </button>
-              </li>
-            </Link>
+
           </ul>
         </div>
       </div>

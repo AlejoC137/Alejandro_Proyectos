@@ -6,7 +6,8 @@ import {
     SET_VISITOR,
     SET_NAV_OPTION,
     GET_MAIN_PROFILE,
-    GET_PROJECTS_BY_ID
+    GET_PROJECTS_BY_ID,
+    GET_MAIN_DEFINITIONS
     
   } from "./actions-types";
   
@@ -18,7 +19,8 @@ import {
     visitorData:'',
     MenuBarOption:'',
     mainProfile:{},
-
+    mainDefinitions:{},
+    
     
   };
   
@@ -34,6 +36,12 @@ import {
         return {
             ...state,
             projectById: action.payload,
+                    // console.log(action.payload);
+        };
+        case GET_MAIN_DEFINITIONS:
+        return {
+            ...state,
+            mainDefinitions: action.payload,
                     // console.log(action.payload);
         };
   

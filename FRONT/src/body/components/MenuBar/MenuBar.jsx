@@ -8,13 +8,24 @@ import {
   ARCH,
   ALE,
 } from "../../../redux/actions-types.js";
-import { getAllProjects, setMenuBarOption } from "../../../redux/actions.js";
+import { getAllProjects, getMainProfile, getMaindefinitions, setMenuBarOption } from "../../../redux/actions.js";
+import InfoCol from "../infoCol/InfoCol.jsx";
+import MenuOpt from "./MenuOpt.jsx";
 
 
 
 
-export default function MenuBar() {
+export default function MenuBar(props) {
+
   const dispatch = useDispatch();
+
+  useEffect( () => {
+    // console.log(mainDerinitions);
+
+  } , [] );  
+  const mainDerinitions = useSelector(state => state.mainDefinitions);
+
+
   const userAuth = useSelector((state) => state.userAuth);
   const [userInfo, setUserInfo] = useState(false);
   const Visitor = useSelector(state => state.visitorData);
@@ -29,80 +40,45 @@ dispatch(setMenuBarOption(e))
   }
 
   return (
-    <nav className=" ml-4" 
+    <div 
+    className=" ml-4 " 
     >
      
+    <MenuOpt
+      tittle='DEV'
+      keyName='CODE'
+      name='DESARROLLO'
+      // definition={props.definitions}
+    ></MenuOpt>  
         
-        
-     <ul >
+
+<br></br>
+{/* {} */}
+    <MenuOpt
+
+      tittle='ARQ'
+      keyName='ARCH'
+      name='ARQUITECTURA'
+      // definition={props.definitions}
+
+    ></MenuOpt>  
+
 
 <br></br>
 
+    <MenuOpt
+      tittle='ACT'      
+      keyName='SOCI'
+      name='ACTIVISMO'
+      // definition={props.definitions}
 
-            {/* <Link to={`/aboutUs`} className='w-64'> */}
-            <li className={MenuBarOption == SOCI ? styles.hatch1 : styles.hatch2}>
-                <button
-                className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{handleOnClick(SOCI)}}
-
-                >
-                <div
-                className="font-Montserrat font-bold text-8xl flex flex-col">
-                ACT
-                </div>
-                <div className="font text-2xl flex flex-col">
-                 ACTIVISMO
-                </div>
-                </button>
-              </li>
-            {/* </Link> */}
+    ></MenuOpt>  
 
 <br></br>
 
-            {/* <Link to={`/aboutUs`}> */}
-            <li className={MenuBarOption == ARCH ? styles.hatch1 : styles.hatch2}>
-                <button
-                className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{handleOnClick(ARCH)}}
-
-                >
-                <div
-                className="font-Montserrat font-bold text-8xl flex flex-col">
-                  ARQ
-                </div>
-                <div className="font-Montserrat  text-2xl flex flex-col">
-                  ARQUITECTURA
-                </div>
-                </button>
-              </li>
-            {/* </Link> */}
-
-<br></br>
-
-
-            {/* <Link to={`/aboutUs`}> */}
-            <li className={MenuBarOption == CODE ? styles.hatch1 : styles.hatch2}>
-                <button
-                className=" border-pureRed   border-4    w-64 p-2"
-                onClick={()=>{handleOnClick(CODE)}}
-
-
-                >
-                <div
-                className="font-Montserrat font-bold  text-8xl flex flex-col">
-                  DEV
-                </div>
-                <div className="font-Montserrat text-2xl flex flex-col">
-                  DESARROLLO
-                </div>
-                </button>
-              </li>
-            {/* </Link> */}
 
       
 
-          </ul>
-
-    </nav>
+    </div>
   );
 }
