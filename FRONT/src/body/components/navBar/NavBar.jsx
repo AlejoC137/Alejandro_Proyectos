@@ -8,7 +8,7 @@ export default function AboutMe() {
   const Visitor = useSelector(state => state.visitorData);
   const mainProfile = useSelector(state => state.mainProfile);
   const [specialHi, setSpecialHi] = useState("");
-  const [normalHi, setNormlaHi] = useState("")
+  const [normalHi, setNormlaHi] = useState("Hola!,")
   useEffect(() => {
     dispatch(getMainProfile());
   }, []);
