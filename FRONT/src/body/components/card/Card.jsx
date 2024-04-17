@@ -26,7 +26,8 @@ function Card(props) {
   }
   alt="project media"
 />
-        <h5 className="text-sm">{props.projectName}</h5>
+
+        <h5 className=" ml-8 font-Montserrat font-bold text-2xl flex flex-col">{props.projectName}</h5>
       </Link>
     </div>
   );

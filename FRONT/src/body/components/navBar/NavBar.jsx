@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainProfile } from "../../../redux/actions";
 
-export default function NavBar() {
+export default function AboutMe() {
   const dispatch = useDispatch();
   const Visitor = useSelector(state => state.visitorData);
   const mainProfile = useSelector(state => state.mainProfile);
   const [specialHi, setSpecialHi] = useState("");
-
+  const [normalHi, setNormlaHi] = useState("")
   useEffect(() => {
     dispatch(getMainProfile());
   }, []);
@@ -33,7 +33,7 @@ export default function NavBar() {
         <Link>
           <li className="font-Montserrat font-bold text-8xl flex flex-col">
             <button className="md:dark:hover:text-pureRed font-Montserrat font-bold text-4xl flex flex-col">
-              PORTAFOLIO {Visitor} {specialHi} {mainProfile.profileNickName ? mainProfile.profileNickName : ''}
+               {specialHi===""?normalHi:specialHi}{" "}{Visitor}{" "}{mainProfile.profileNickName?mainProfile.profileNickName:''}
             </button>
           </li>
         </Link>
