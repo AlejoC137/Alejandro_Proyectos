@@ -9,7 +9,7 @@ function Cards(props) {
 
   // const activePADs = props.currentPAD.filter((PAD) => PAD.active === true);
   // const activeProjects = props.ProjectsCollectio
-console.log(activeProjects);
+// console.log(activeProjects);
   return (
     <div className="overflow-y-hidden">
         <br></br>
@@ -21,7 +21,7 @@ console.log(activeProjects);
           category={PROJECT?.category}
           descriptions={PROJECT?.descriptions}
           media={PROJECT?.media}
-
+          id={PROJECT?._id}
           />
         ))}
       </div>

@@ -5,6 +5,7 @@ import {
   SET_VISITOR,
   SET_NAV_OPTION,
   GET_MAIN_PROFILE,
+  GET_PROJECTS_BY_ID,
   PUT_PROJECT,
   CODE,
   SOCI,
@@ -19,24 +20,39 @@ import Swal from "sweetalert2";
 
 
 
-export function getAllProjects(category) {
-
-
+export function getAllProjects(category, id) {
   return async function (dispatch) {
-    
-      try {
-        // /project?collection=soci
-          const projects = await axios.get(`/project?db=projects&collection=${category}`);
-        //   console.log(projects.data);
-          return dispatch({
-              type: GET_ALL_PROJECTS,
-              payload: projects.data,
-          });          
-      } catch (error) {
-          console.log(error.message);
+    try {
+      const projects = await axios.get(`/project?db=projects&collection=${category}`);
+      
+
+      // console.log(projects.data[0]);
+      if (id) { // Check if id exists
+        for (let i = 0; i < projects.data.length; i++) {
+          if (projects.data[i]._id === id) {
+            // console.log(projects.data[i]);
+            return dispatch({
+              type: GET_PROJECTS_BY_ID,
+              payload: projects.data[i],
+            });
+          }
+        }
+        // If id is provided but not found in any projects
+        console.log(`Project with id ${id} not found.`);
+      } else {
+        return dispatch({
+          type: GET_ALL_PROJECTS,
+          payload: projects.data,
+        });
       }
+
+      
+    } catch (error) {
+      console.log(error.message);
+    }
   };
-    };
+}
+
 
 export function prePostProject(proyectToBePosted) {
 
@@ -95,10 +111,10 @@ export function setVisitor( visitorName ) {
   
                     return dispatch({
                         type: SET_VISITOR,
-                        payload: [
+                        payload: 
                             visitorName,
                             // visitorTag,
-                       ]
+                       
                
                 })
             

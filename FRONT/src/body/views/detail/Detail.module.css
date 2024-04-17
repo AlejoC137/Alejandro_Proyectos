@@ -1,0 +1,21 @@
+
+
+.hatch {
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(-45deg, #444cf7 0, #444cf7 1px, #ffffff 0, #e5e5f7 50%);
+  /* margin-left: 10px;   */
+}
+
+
+/* .hatch {
+    width: 100vw;
+    height: 100vh;
+    background-image:
+      repeating-linear-gradient(
+        -45deg,
+        transparent 0 19px,
+        black 10px 20px
+      );
+  } */

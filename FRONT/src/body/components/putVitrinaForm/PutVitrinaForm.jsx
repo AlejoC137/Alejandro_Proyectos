@@ -178,7 +178,7 @@ function PutVitrinaForm() {
         </div>
 
         <div
-      className=" rounded-lg flex flex-col justify-center items-center w-72 border-2 border-emerald-500 m-8 flex-col"
+      className=" rounded-lg flex flex-col justify-center items-center w-72 border-2 border-emerald-500 m-8 "
       >
 
           <img 

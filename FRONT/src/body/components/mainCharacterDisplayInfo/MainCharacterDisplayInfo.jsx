@@ -12,7 +12,7 @@ import { getMainProfile, setMenuBarOption } from "../../../redux/actions.js";
 
 export default function MainCharacterDisplayInfo() {
   const dispatch = useDispatch();
-  const userAuth = useSelector((state) => state.userAuth);
+  // const userAuth = useSelector((state) => state.userAuth);
   const Visitor = useSelector(state => state.visitorData);
 
 

@@ -30,14 +30,14 @@ function Home() {
 
     const Projects = useSelector(state => state.allProjects);
     
-    console.log(Projects);    
+    // console.log(Projects);    
 
     return (
     <div className="flex">
 <div>
         <br></br>
 
-      <MainCharacterDisplayInfo></MainCharacterDisplayInfo>
+      {/* <MainCharacterDisplayInfo></MainCharacterDisplayInfo> */}
       <div
       className="flex"
       >
@@ -48,10 +48,13 @@ function Home() {
       </div>
 
 </div>
+      <div>
+      <br></br>
       <Cards 
       ProjectsCollectio={Projects} 
       // PAD =  {Projects}
-        />
+      />
+      </div>
 
     </div>
     );

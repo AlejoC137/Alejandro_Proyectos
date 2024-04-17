@@ -6,11 +6,13 @@ import {
     SET_VISITOR,
     SET_NAV_OPTION,
     GET_MAIN_PROFILE,
+    GET_PROJECTS_BY_ID
     
   } from "./actions-types";
   
   const initialState = {
     allProjects: [],
+    projectById: {},
     projectToBePosted: {},
     currentLenguaje: 'ES',
     visitorData:'',
@@ -26,6 +28,12 @@ import {
         return {
             ...state,
             allProjects: action.payload,
+                    // console.log(action.payload);
+        };
+        case GET_PROJECTS_BY_ID:
+        return {
+            ...state,
+            projectById: action.payload,
                     // console.log(action.payload);
         };
   
