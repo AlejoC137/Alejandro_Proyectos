@@ -81,7 +81,17 @@ console.log();
                   "font-Montserrat font-bold text-8xl flex flex-col w-56 text-slate-400 "}>
                   {props.tittle}
                 </div>
-                <div className="font-Montserrat  text-2xl flex flex-col">
+                <div 
+                
+                
+                className={
+                  MenuBarOption === props.keyName?
+                "font-Montserrat  text-2xl flex flex-col":
+                "font-Montserrat  text-2xl flex flex-col text-slate-400 "}
+                
+                
+                
+>
                   {props.name}
                 </div>
                 <div className="font-Montserrat  text-2xl flex flex-col">
@@ -95,7 +105,13 @@ console.log();
                 </button>
                 
                         <div 
-                        className="  w-64 mr- ml-3 bg-white "
+
+
+className={
+  MenuBarOption === props.keyName?
+"w-64 mr- ml-3 bg-white  border-r-2 border-b-2 border-black":
+"w-64 mr- ml-3   border-r-0 border-b-0 border-slate-400 "}
+
                         >
                             
                          <p

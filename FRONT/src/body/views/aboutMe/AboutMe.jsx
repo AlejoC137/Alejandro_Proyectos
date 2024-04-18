@@ -1,44 +1,84 @@
-// Detail.jsx
-import React from "react";
-import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllProjects, postProject, getMainProfile } from '../../../redux/actions.js';
-import Show from '../../components/show/Show.jsx'
-import styles from './Detail.module.css';
-import MenuBar from "../../components/MenuBar/MenuBar.jsx";
-import MainCharacterDisplayInfo from "../../components/mainCharacterDisplayInfo/MainCharacterDisplayInfo.jsx";
-import InfoCol from "../../components/infoCol/InfoCol.jsx";
-import InfoDet from "../../components/infoCol/InfoDet.jsx";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMainProfile } from "../../../redux/actions";
 
-function Detail() {
-  const { data } = useParams();
-
-  function splitString(inputString) {
-    const [key, value] = inputString.split("=");
-    return { key, value };
-  }
-
+function AboutMe() {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    const { key, value } = splitString(data);
-    dispatch(getAllProjects(key, value));
+    dispatch(getMainProfile());
   }, []);
-
-  const Visitor = useSelector(state => state.visitorData);
-  const Project = useSelector(state => state.projectById);
-
+  
+  const mainProfile = useSelector(state => state.mainProfile);
+  
   return (
-    <div className="flex flex-grow">
-      {/* NavBar y Footer se mantienen aquí, ya que Detail tiene que ocupar todo el espacio disponible */}
-      <InfoDet data={Project} />
-      <div>
-        <br />
-        <Show data={Project} />
+    <div className="flex flex-grow justify-center items-center">
+      <div className="max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <div className="flex items-center justify-center mb-4">
+          <img src={mainProfile?.media?.img?.[0]?.URL} alt="Profile" className="w-32 h-32 rounded-full" />
+        </div>
+        <h2 className="text-2xl font-bold mb-4">About Me</h2>
+        <div className="mb-4">
+          <strong>profileFullName:</strong> {mainProfile?.profileFullName}
+        </div>
+        <div className="mb-4">
+          <strong>profileNickName:</strong> {mainProfile?.profileNickName}
+        </div>
+        <div className="mb-4">
+          <strong>profileInitials:</strong> {mainProfile?.profileInitials}
+        </div>
+        <div className="mb-4">
+          <strong>Social Media:</strong> 
+          <ul>
+            {mainProfile?.socialMedia?.map((social, index) => (
+              <li key={index}>
+                <strong>{social.name}: </strong>
+                <a href={social.link}>{social.user}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="mb-4">
+          <strong>Bio:</strong> 
+          <ul>
+            <li>
+              <strong>Age:</strong> {mainProfile?.bio?.[0]?.age}
+            </li>
+            <li>
+              <strong>Birth:</strong> {mainProfile?.bio?.[0]?.birth}
+            </li>
+            <li>
+              <strong>Height:</strong> {mainProfile?.bio?.[0]?.height}
+            </li>
+            <li>
+              <strong>Weight:</strong> {mainProfile?.bio?.[0]?.weight}
+            </li>
+            <li>
+              <strong>Gender:</strong> {mainProfile?.bio?.[0]?.gender}
+            </li>
+          </ul>
+        </div>
+        <div className="mb-4">
+          <strong>Contact:</strong> 
+          <ul>
+            <li>
+              <strong>Cellphone:</strong> {mainProfile?.contact?.[0]?.cellphone}
+            </li>
+            <li>
+              <strong>Email:</strong> {mainProfile?.contact?.[0]?.email}
+            </li>
+            <li>
+              <strong>Website:</strong> <a href={mainProfile?.contact?.[0]?.website}>{mainProfile?.contact?.[0]?.website}</a>
+            </li>
+            <li>
+              <strong>Location:</strong> {mainProfile?.contact?.[0]?.location}
+            </li>
+          </ul>
+        </div>
+        
       </div>
     </div>
   );
 }
 
-export default Detail;
+export default AboutMe;

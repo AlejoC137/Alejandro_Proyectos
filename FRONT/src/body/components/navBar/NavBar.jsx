@@ -8,7 +8,7 @@ export default function AboutMe() {
   const Visitor = useSelector(state => state.visitorData);
   const mainProfile = useSelector(state => state.mainProfile);
   const [specialHi, setSpecialHi] = useState("");
-  const [normalHi, setNormlaHi] = useState("Hola!,")
+  const [normalHi, setNormlaHi] = useState(`Hola ${Visitor}!`)
   useEffect(() => {
     dispatch(getMainProfile());
   }, []);
@@ -16,11 +16,12 @@ export default function AboutMe() {
   useEffect(() => {
     switch (Visitor) {
       case 'Meli':
-        setSpecialHi(' I ♡ U ');
+        setSpecialHi(` I ♡ U ${Visitor}`);
         break;
-      default:
-        setSpecialHi('');
-        break;
+
+
+
+      
     }
 
 
@@ -33,7 +34,7 @@ export default function AboutMe() {
         <Link>
           <li className="font-Montserrat font-bold text-8xl flex flex-col">
             <button className="md:dark:hover:text-pureRed font-Montserrat font-bold text-4xl flex flex-col">
-               {specialHi===""?normalHi:specialHi}{" "}{Visitor}{" "}{mainProfile.profileNickName?mainProfile.profileNickName:''}
+               {specialHi===""?normalHi:specialHi}{" "} Att: {mainProfile.profileNickName?mainProfile.profileNickName:''}
             </button>
           </li>
         </Link>
@@ -57,7 +58,7 @@ export default function AboutMe() {
               </li>
             </Link>
 
-            <Link>
+            <Link to={`/about`}>
               <li>
                 <button className="block py-2 pl-3 pr-4 text-black rounded font-Montserrat hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-keppel600 md:p-0 dark:text-black md:dark:hover:text-pureRed dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent">
                   SOBRE MI

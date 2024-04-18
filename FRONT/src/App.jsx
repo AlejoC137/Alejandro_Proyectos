@@ -10,6 +10,7 @@ import  PutVitrina  from "./body/views/putVitrina/PutVitrina.jsx";
 import styles from './App.module.css';
 import NavBar from './body/components/navBar/NavBar.jsx';
 import Footer from './body/components/footer/Footer.jsx';
+import AboutMe from './body/views/aboutMe/AboutMe.jsx';
 
 function App() {
 const location = useLocation()
@@ -27,8 +28,9 @@ const location = useLocation()
         <Route path="/newproject" element={<NewProjectPortal/>} />
         <Route path="/newprofile" element={<NewProfilePortal/>} />
         <Route path="/detail/:data" element={<Detail/>} />
+        <Route path="/about" element={<AboutMe/>} />
         
-        
+
         
         <Route path="/putvitrina" element={<PutVitrina/>} /> {/* <- Temporal */}
 
