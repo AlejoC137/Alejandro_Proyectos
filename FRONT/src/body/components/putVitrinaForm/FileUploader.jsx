@@ -21,9 +21,9 @@ function FileUploader  ({ handleFile }) {
   };
   return (
     <>
-      <button className="button-upload" onClick={handleClick}>
+      <div className="button-upload" onClick={handleClick}>
       🖼
-      </button>
+      </div>
       <input
         type="file"
         onChange={handleChange}
