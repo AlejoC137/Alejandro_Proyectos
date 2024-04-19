@@ -59,14 +59,14 @@ const dispatch = useDispatch()
     { order: 3, mainProperty: "DescripcionEN", subProperties: [] },
   ];
   const selectField = [
-    { order: 2, mainProperty: "TipoES", options: ['Café' , 'Bebidas' , 'Sanduches' , "Desayuno" , 'NA'] },
-    { order: 2, mainProperty: "TipoEN", options: ['Coffee' , 'Drinks' , 'Sandwitch' , "Breackfast" , 'NA'] },
+    { order: 2, mainProperty: "TipoES", options: ['Café' , 'Bebidas' , 'Sanduches' , "Desayuno", 'Postres' , 'Panes' , 'NA'] },
+    { order: 2, mainProperty: "TipoEN", options: ['Coffee' , 'Drinks' , 'Sandwitch' , "Breackfast", "Deserts", 'Breads' , 'NA'] },
     { order: 2, mainProperty: "SubTipoES", options: ['Frío' , 'Caliente' , 'Dulce' , "Salado" , 'NA'] },
     { order: 2, mainProperty: "SubTipoEN", options: ['Cold' , 'Hot' , 'Sweet' , "Salty" , 'NA'] },
     { order: 2, mainProperty: "DietaES", options: ['Carnico' , 'Vegetarino' , 'Vegano' , 'NA'] },
     { order: 2, mainProperty: "DietaEN", options: ['Meat' , 'Vegeterian' , 'Vegan' , 'NA'] },
     { order: 2, mainProperty: "CuidadoES", options: ['Nueces' , 'Picante' , 'NA'] },
-    { order: 2, mainProperty: "CuidadoEN", options: ['walnuts' , 'Spice' , 'NA' ] },
+    { order: 2, mainProperty: "CuidadoEN", options: ['Walnuts' , 'Spice' , 'NA' ] },
     { order: 2, mainProperty: "Estado", options: ['Activo', 'Inactivo'] },
   ];
 
