@@ -201,7 +201,7 @@ export  async function updateProject(updateData) {
     //  return  function (dispatch){
        try {
         // console.log(updateData);
-          await axios.patch('/updatemenu', updateData).then(response => {
+          await axios.put('/updatemenu', updateData).then(response => {
             console.log(response);
           })
           .catch(error => {
