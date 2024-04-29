@@ -134,8 +134,8 @@ function ProductFormEdit() {
                 <input
                   type="text"
                   id={fieldConfig.mainProperty}
-                  onChange={(e)=>{handleFieldSelection(e.target.value)}}
-                  onBlur={(e) => console.log(e.target.value)}
+                  onBlur={(e)=>{handleFieldSelection(e.target.value)}}
+                  // onBlur={(e) => console.log(e.target.value)}
                 />
               </div>
             )}
