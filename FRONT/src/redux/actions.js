@@ -218,7 +218,8 @@ export function patchVitrina() {
     export  function updateProject(updateData) {
      return async function (dispatch){
        try {
-        const response = await axios.patch('/updatemenu', updateData);
+        console.log(updateData);
+        // const response = await axios.patch('/updatemenu', updateData);
         // Dispatch an action if needed
         // return {
           // type: PUT_PROJECT,
