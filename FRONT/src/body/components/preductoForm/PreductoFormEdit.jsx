@@ -45,7 +45,13 @@ function ProductFormEdit() {
       setIsLoading(true); // Set loading state to true
       // Dispatch action to post the project data
       await dispatch(
-        updateProject( id , selectedField , selectedValue  // Use selectedField and selectedOption or textInputValue to update the selected field
+        updateProject({
+          "id":id, 
+          "Field":selectedField,
+          "Value": selectedValue  // Use selectedField and selectedOption or textInputValue to update the selected field
+
+        }
+          
         )
       );
       Swal.fire("Success", "Product data updated successfully", "success"); // Show success message
