@@ -12,6 +12,7 @@ import NavBar from './body/components/navBar/NavBar.jsx';
 import Footer from './body/components/footer/Footer.jsx';
 import AboutMe from './body/views/aboutMe/AboutMe.jsx';
 import NewProductoPortal from './body/views/newProductoMenu/NewProductoPortal.jsx';
+import EditProductoPortal from './body/views/newProductoMenu/EditProductoPortal.jsx';
 function App() {
 const location = useLocation()
   return (
@@ -28,6 +29,8 @@ const location = useLocation()
         <Route path="/newproject" element={<NewProjectPortal/>} />
         <Route path="/newprofile" element={<NewProfilePortal/>} />
         <Route path="/newproducto" element={<NewProductoPortal/>} />
+        {/* <Route path="/editproducto" element={<EditProductoPortal/>} /> */}
+        <Route path="/editproducto/:id" element={<EditProductoPortal/>} />
         <Route path="/detail/:data" element={<Detail/>} />
         <Route path="/about" element={<AboutMe/>} />
         

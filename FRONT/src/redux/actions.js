@@ -212,10 +212,10 @@ export function getMaindefinitions() {
     };
     };
 
-export function patchVitrina() {
+export function updateProject(updateData) {
       return async function (dispatch) {
         try {
-          const responseDel = await axios.delete('/delvitrina');
+          const responseUpDate = await axios.patch('/updatemenu',updateData);
 
           
 
