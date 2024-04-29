@@ -215,21 +215,17 @@ export function patchVitrina() {
       };
     }
 
-    export  async function updateProject(updateData) {
-      // return async function (dispatch) {
-        try {
-          const responseUpDate = await axios.patch('/updatemenu', updateData);
-
-          
-
-          // console.log(response);
-          Swal.fire('Proyecto actualizado exitosamente');
-          // return dispatch({
-            // type: PUT_PROJECT,
-            // payload: response.data, // You may or may not need to dispatch the updated project data
-          // });
-        } catch (error) {
-          Swal.fire(error.response.data.error);
-        }
-      // };
+    export async function updateProject(updateData) {
+      try {
+        const response = await axios.patch('/updatemenu', updateData);
+        // Dispatch an action if needed
+        // return {
+          // type: PUT_PROJECT,
+          // payload: response.data, // You may or may not need to dispatch the updated project data
+        // };
+      } catch (error) {
+        Swal.fire(error.response.data.error);
+        // Optionally, you can throw the error to handle it in the component
+        throw error;
+      }
     }
