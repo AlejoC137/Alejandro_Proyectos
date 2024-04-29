@@ -4,8 +4,12 @@ import { updateProject , postProject} from "../../../redux/actions";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import FileUploader from "../../components/putVitrinaForm/FileUploader.jsx";
 
 function ProductFormEdit() {
+  const cloudName = 'denjiview'; // Replace 'your_cloud_name' with your Cloudinary cloud name
+
+  const cloudPreset = 'itjhsbrs'; // Replace 'your_cloud_name' with your Cloudinary cloud name
 
   const {id} = useParams()
   const dispatch = useDispatch();
@@ -16,6 +20,17 @@ function ProductFormEdit() {
   const [textInputValue, setTextInputValue] = useState(""); // State to store the input value for static fields
   const [isLoading, setIsLoading] = useState(false);
 
+
+  const [vitrinaImage, setVitrinaImage] = useState("");
+  const [imagePreview, setImagePreview] = useState('https://res.cloudinary.com/denjiview/image/upload/v1710996709/PERCHERO_02-02_g4pqcy.png');
+  
+  const handleImageChange = (file) => {
+    setVitrinaImage(file)
+    // let url = URL.createObjectURL(file)
+    setImagePreview(URL.createObjectURL(file))
+    // console.log(url)
+   
+  }
   // Object containing fields and their options
   const selectField = {
     TipoES: ['Café', 'Bebidas', 'Sanduches', "Desayuno", 'Postres', 'Panes', 'NA'],
@@ -35,6 +50,7 @@ function ProductFormEdit() {
     { order: 2, mainProperty: "Precio", subProperties: [] },
     { order: 3, mainProperty: "DescripcionES", subProperties: [] },
     { order: 3, mainProperty: "DescripcionEN", subProperties: [] },
+    { order: 3, mainProperty: "foto", subProperties: [] },
   ];
 
   // Function to handle form submission
@@ -50,7 +66,37 @@ function ProductFormEdit() {
         })
 
   };
-
+  const uploadImage = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+  
+    try {
+      let imageURL;
+      if (
+        vitrinaImage && (
+          vitrinaImage.type === 'image/png' ||
+          vitrinaImage.type === 'image/jpg' ||
+          vitrinaImage.type === 'image/jpeg'
+        )
+      ) {
+        const image = new FormData();
+        image.append('file', vitrinaImage);
+        image.append('cloud_name', `${cloudName}`);
+        image.append('upload_preset', `${cloudPreset}`);
+  
+        const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, image);
+  
+        // Si la carga de la imagen fue exitosa, obtenemos la URL y la almacenamos en formData
+        const imageURL = response.data.url;
+        handleOnBlur(imageURL, 'foto'); // Aquí llamamos a handleOnBlur para agregar la URL al campo de media.img
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire('Error al cargar la imagen', error.message, 'error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
   // Function to handle field selection
   const handleFieldSelection = (Field) => {
     setSelectedField(Field);
@@ -119,24 +165,61 @@ function ProductFormEdit() {
             {selectedField === fieldConfig.mainProperty && (
               <div>
                 <label htmlFor={fieldConfig.mainProperty}>{fieldConfig.mainProperty}:</label>
-                <input
+             {selectField !=='foto' &&  <input
                   type="text"
                   id={fieldConfig.mainProperty}
                   onChange={(e)=>{handleValueSelection(e.target.value)}}
                   onBlur={(e) => console.log(e.target.value)}
-                />
+                />}
               </div>
             )}
           </div>
         ))}
 
+
+{selectField === 'foto' && 
+
+<div className="flex-row  h-16 ">
+  <div className="flex">
+    <div className="rounded-lg justify-center items-center w-40  border-2 border-emerald-500 m-6">
+      <label>Seleccionar imagen:</label>
+      <FileUploader handleFile={handleImageChange} />
+    </div>
+
+    <div className="rounded-lg flex flex-col justify-center items-center w-16 border-2 border-emerald-500 m-8">
+      <img src={`${imagePreview}`} alt='' className="p-2" />
+    </div>
+
+    <div className="rounded-lg flex-col justify-center items-center w-40 border-2 border-emerald-500 m-6 flex">
+      {isLoading ? 
+        ('Cargando...') : 
+        (
+          <>
+            <label>Cargar imagen:</label>
+            <div onClick={uploadImage}>⬆️</div>
+          </>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+}
+
+
+
+
+
+
+
+
         {/* Submit Button */}
         <button
           type="submit"
           className="mt-3 border-3 border-solid border-y-gray-950 ml-3 w-64 h-10 bg-red-200 rounded-md p-2 focus:outline-none focus:border-blue-500"
-          // disabled={!selectedField || isLoading}
+          disabled={!selectedField || isLoading}
         >
-          {/* {isLoading ? "Updating..." : "Update Product"} */}
+          {isLoading ? "Updating..." : "Update Product"}
         </button>
       </form>
     </div>
