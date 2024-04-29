@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateProject } from "../../../redux/actions";
+import { updateProject , postProject} from "../../../redux/actions";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -38,28 +38,17 @@ function ProductFormEdit() {
   ];
 
   // Function to handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault(); // Prevent default form submission behavior
 
-    try {
-      setIsLoading(true); // Set loading state to true
+  
       // Dispatch action to post the project data
-      dispatch(
-        updateProject({
+      updateProject({
           "id": id,
           "Field": selectedField,
           "Value": selectedValue // Use selectedField and selectedOption or textInputValue to update the selected field
-        }
+        })
 
-        )
-      );
-      Swal.fire("Success", "Product data updated successfully", "success"); // Show success message
-    } catch (error) {
-      console.error(error);
-      Swal.fire("Error", "Failed to update product data", "error"); // Show error message
-    } finally {
-      setIsLoading(false); // Set loading state back to false
-    }
   };
 
   // Function to handle field selection
@@ -145,9 +134,9 @@ function ProductFormEdit() {
         <button
           type="submit"
           className="mt-3 border-3 border-solid border-y-gray-950 ml-3 w-64 h-10 bg-red-200 rounded-md p-2 focus:outline-none focus:border-blue-500"
-          disabled={!selectedField || isLoading}
+          // disabled={!selectedField || isLoading}
         >
-          {isLoading ? "Updating..." : "Update Product"}
+          {/* {isLoading ? "Updating..." : "Update Product"} */}
         </button>
       </form>
     </div>

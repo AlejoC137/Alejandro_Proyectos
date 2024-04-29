@@ -67,25 +67,7 @@ export function prePostProject(proyectToBePosted) {
       
     };
 
-export async function  postProject(projectData) {
-// console.log(projectData);
-        // return  function (dispatch) {
-            try {
-                await axios.post('/project' , projectData);
-                // console.log(JSON.stringify(projectData));
-                // return dispatch({
-                    // type: POST_A_PROJECT,
-                    // payload: proje\ctData,
-                // })
-            } catch (error) {
-                console.log(error.message)
-            }
-               
-              
-           
-        // };
-      
-    };
+
 
 export function setLenguaje(lenguaje) {
 
@@ -215,20 +197,57 @@ export function patchVitrina() {
       };
     }
 
-    export  function updateProject(updateData) {
-     return async function (dispatch){
+export  async function updateProject(updateData) {
+    //  return  function (dispatch){
        try {
-        console.log(updateData);
-        // const response = await axios.patch('/updatemenu', updateData);
+        // console.log(updateData);
+          await axios.patch('/updatemenu', updateData).then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log('Error', error.message);
+            }
+            console.log(error.config);
+          });
         // Dispatch an action if needed
         // return {
           // type: PUT_PROJECT,
           // payload: response.data, // You may or may not need to dispatch the updated project data
         // };
+
+        // console.log(response);
       } catch (error) {
-        Swal.fire(error.response.data.error);
+        // Swal.fire(error.response.data.error);
         // Optionally, you can throw the error to handle it in the component
-        throw error;
+        console.log(error.message)
+
       }
-      }
+      
     }
+
+export async function  postProject(projectData) {
+      // console.log(projectData);
+              // return  function (dispatch) {
+                  try {
+                      await axios.post('/project' , projectData);
+                      // console.log(JSON.stringify(projectData));
+                      // return dispatch({
+                          // type: POST_A_PROJECT,
+                          // payload: proje\ctData,
+                      // })
+                  } catch (error) {
+                      console.log(error.message)
+                  }
+                     
+                    
+                 
+              // };
+            
+          };
