@@ -146,7 +146,7 @@ function ProductFormEdit() {
         <button
           type="submit"
           className="mt-3 border-3 border-solid border-y-gray-950 ml-3 w-64 h-10 bg-red-200 rounded-md p-2 focus:outline-none focus:border-blue-500"
-          disabled={!selectedField || (!selectedOption && !textInputValue) || isLoading}
+          disabled={!selectedField || isLoading}
         >
           {isLoading ? "Updating..." : "Update Product"}
         </button>
