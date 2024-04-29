@@ -212,7 +212,26 @@ export function getMaindefinitions() {
     };
     };
 
-export function updateProject(updateData) {
+export function patchVitrina() {
+      return async function (dispatch) {
+        try {
+          const responseDel = await axios.delete('/delvitrina');
+
+          
+
+          // console.log(response);
+          Swal.fire('Proyecto actualizado exitosamente');
+          // return dispatch({
+            // type: PUT_PROJECT,
+            // payload: response.data, // You may or may not need to dispatch the updated project data
+          // });
+        } catch (error) {
+          Swal.fire(error.response.data.error);
+        }
+      };
+    }
+
+    export function updateProject(updateData) {
       return async function (dispatch) {
         try {
           const responseUpDate = await axios.patch('/updatemenu',updateData);
