@@ -21,7 +21,7 @@ function FileUploader  ({ handleFile }) {
   };
   return (
     <>
-      <div className="button-upload" onClick={handleClick}>
+      <div className="flex justify-center items-center text-4xl" onClick={handleClick}>
       🖼
       </div>
       <input

@@ -8,11 +8,7 @@ function PreductoForm() {
   const cloudName = 'denjiview'; // Replace 'your_cloud_name' with your Cloudinary cloud name
   const cloudPreset = 'itjhsbrs'; // Replace 'your_cloud_name' with your Cloudinary cloud name
 const dispatch = useDispatch()
-  const [teamCount, setTeamCount] = useState();
-  const [media_imgCount, setMedia_imgCount] = useState();
-  const [media_videoCount, setMedia_videoCount] = useState();
-  const [descriptionCount, setDescriptionCount] = useState();
-  const [datesCount, setDatesCount] = useState();
+
 
   const [fields, setFields] = useState([]);
   const [fieldCounters, setFieldCounters] = useState({});
@@ -20,6 +16,7 @@ const dispatch = useDispatch()
 
   const [vitrinaImage, setVitrinaImage] = useState("");
   const [imagePreview, setImagePreview] = useState('https://res.cloudinary.com/denjiview/image/upload/v1710996709/PERCHERO_02-02_g4pqcy.png');
+  
   const handleImageChange = (file) => {
     setVitrinaImage(file)
     // let url = URL.createObjectURL(file)

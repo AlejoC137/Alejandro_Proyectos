@@ -88,7 +88,7 @@ function ProductFormEdit() {
   
         // Si la carga de la imagen fue exitosa, obtenemos la URL y la almacenamos en formData
         const imageURL = response.data.url;
-        handleOnBlur(imageURL, 'foto'); // Aquí llamamos a handleOnBlur para agregar la URL al campo de media.img
+        setSelectedValue(imageURL); // Aquí llamamos a handleOnBlur para agregar la URL al campo de media.img
       }
     } catch (error) {
       console.log(error);
@@ -161,50 +161,48 @@ function ProductFormEdit() {
 
         {/* Text Input for Static Fields */}
         {staticField.map((fieldConfig, index) => (
-          <div key={index}>
-            {selectedField === fieldConfig.mainProperty && (
-              <div>
-                <label htmlFor={fieldConfig.mainProperty}>{fieldConfig.mainProperty}:</label>
-             {selectField !=='foto' &&  <input
-                  type="text"
-                  id={fieldConfig.mainProperty}
-                  onChange={(e)=>{handleValueSelection(e.target.value)}}
-                  onBlur={(e) => console.log(e.target.value)}
-                />}
-              </div>
-            )}
-          </div>
-        ))}
+  <div key={index}>
+    {selectedField === fieldConfig.mainProperty && fieldConfig.mainProperty !== 'foto' && (
+      <div>
+        <label htmlFor={fieldConfig.mainProperty}>{fieldConfig.mainProperty}:</label>
+        <input
+          type="text"
+          id={fieldConfig.mainProperty}
+          onChange={(e) => { handleValueSelection(e.target.value) }}
+          onBlur={(e) => console.log(e.target.value)}
+        />
+      </div>
+    )}
+  </div>
+))}
 
 
-{selectField === 'foto' && 
+{selectedField === 'foto' && (
+  <div className=" ">
+    <div className="">
+      <div className="rounded-lg justify-center items-center w-40 border-2 border-emerald-500 m-6">
+        <label>Seleccionar imagen:</label>
+        <FileUploader handleFile={handleImageChange} />
+      </div>
 
-<div className="flex-row  h-16 ">
-  <div className="flex">
-    <div className="rounded-lg justify-center items-center w-40  border-2 border-emerald-500 m-6">
-      <label>Seleccionar imagen:</label>
-      <FileUploader handleFile={handleImageChange} />
-    </div>
+      <div className="rounded-lg flex flex-col justify-center items-center w-40 border-2 border-emerald-500 m-6">
+        <img src={`${imagePreview}`} alt='' className="p-2" />
+      </div>
 
-    <div className="rounded-lg flex flex-col justify-center items-center w-16 border-2 border-emerald-500 m-8">
-      <img src={`${imagePreview}`} alt='' className="p-2" />
-    </div>
-
-    <div className="rounded-lg flex-col justify-center items-center w-40 border-2 border-emerald-500 m-6 flex">
-      {isLoading ? 
-        ('Cargando...') : 
-        (
+      <div className="rounded-lg flex-col justify-center items-center w-40   h-28 border-2 border-emerald-500 m-6 flex">
+        {isLoading ? (
+          'Cargando...'
+        ) : (
           <>
             <label>Cargar imagen:</label>
-            <div onClick={uploadImage}>⬆️</div>
+            <div  className=" text-4xl"
+             onClick={uploadImage}>⬆️</div>
           </>
-        )
-      }
+        )}
+      </div>
     </div>
   </div>
-</div>
-
-}
+)}
 
 
 
