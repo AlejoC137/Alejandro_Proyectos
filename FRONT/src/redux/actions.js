@@ -128,22 +128,6 @@ export function setVisitor( visitorName ) {
     };
     };
 
-// export function setMenuBarOption( option ) {
-//         return function (dispatch) {
-//         try {
-  
-//                     return dispatch({
-//                         type: SET_NAV_OPTION,
-//                         payload: option
-//                 })
-            
-
-//         } catch (error) {
-//             console.log(error.message);
-//         }
-//     };
-//     };
-
 export function setMenuBarOption(option) {
     return function (dispatch) {
       try {
@@ -231,10 +215,10 @@ export function patchVitrina() {
       };
     }
 
-    export function updateProject(updateData) {
-      return async function (dispatch) {
+    export  async function updateProject(updateData) {
+      // return async function (dispatch) {
         try {
-          const responseUpDate = await axios.patch('/updatemenu',updateData);
+          const responseUpDate = await axios.patch('/updatemenu', updateData);
 
           
 
@@ -247,5 +231,5 @@ export function patchVitrina() {
         } catch (error) {
           Swal.fire(error.response.data.error);
         }
-      };
+      // };
     }
