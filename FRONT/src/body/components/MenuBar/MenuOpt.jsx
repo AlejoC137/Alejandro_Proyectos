@@ -58,8 +58,8 @@ console.log();
             <div 
              className={
               MenuBarOption === props.keyName?
-            "flex items-center border-b-2 border-b-black ":
-            "flex items-center border-b-2 border-slate-400 "}
+            "flex items-center border-b-2 border-b-black rounded-lg shadow-lg":
+            "flex items-center border-b-2 border-slate-400  rounded-lg shadow-lg"}
             
             
             
@@ -68,8 +68,8 @@ console.log();
                 <button
  className={
   MenuBarOption === props.keyName?
-"border-black border-b-0 border-l-2  border-t-0 w-64 p-2 rounded-lg shadow-lg":
-"border-slate-400  border-b-0 border-l-2  border-t-0 w-64 p-2 rounded-lg shadow-lg"}
+"border-black  w-64 p-2 ":
+"border-slate-400  w-64 p-2 "}
 
                 onClick={()=>{handleOnClick()}}
 
