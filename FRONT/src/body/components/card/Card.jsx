@@ -12,7 +12,7 @@ function Card(props) {
 
   return (
     <div
-      className= "border-black  border-b-2 border-r-2 border-l-0 border-t-0 max-h-20 w-96 p-2 flex-row mt-6 bg-white"
+      className= "border-black rounded-lg shadow-lg  border-b-2 border-r-2 border-l-0 border-t-0 max-h-20 w-96 p-2 flex-row mt-6 bg-white"
       key={props.id}
       onClick={handleCartButton}
     >

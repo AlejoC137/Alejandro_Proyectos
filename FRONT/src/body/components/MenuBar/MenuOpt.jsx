@@ -68,8 +68,8 @@ console.log();
                 <button
  className={
   MenuBarOption === props.keyName?
-"border-black border-b-0 border-l-2  border-t-0 w-64 p-2":
-"border-slate-400  border-b-0 border-l-2  border-t-0 w-64 p-2"}
+"border-black border-b-0 border-l-2  border-t-0 w-64 p-2 rounded-lg shadow-lg":
+"border-slate-400  border-b-0 border-l-2  border-t-0 w-64 p-2 rounded-lg shadow-lg"}
 
                 onClick={()=>{handleOnClick()}}
 
@@ -77,8 +77,8 @@ console.log();
                 <div
                 className={
                     MenuBarOption === props.keyName?
-                  "font-Montserrat font-bold text-8xl flex flex-col w-56":
-                  "font-Montserrat font-bold text-8xl flex flex-col w-56 text-slate-400 "}>
+                  "font-Montserrat font-bold text-8xl flex flex-col w-56 hover:text-pureRed ":
+                  "font-Montserrat font-bold text-8xl flex flex-col w-56 text-slate-400 hover:text-pureRed "}>
                   {props.tittle}
                 </div>
                 <div 
@@ -87,7 +87,7 @@ console.log();
                 className={
                   MenuBarOption === props.keyName?
                 "font-Montserrat  text-2xl flex flex-col":
-                "font-Montserrat  text-2xl flex flex-col text-slate-400 "}
+                "font-Montserrat  text-2xl flex flex-col text-slate-400  "}
                 
                 
                 
@@ -109,20 +109,20 @@ console.log();
 
 className={
   MenuBarOption === props.keyName?
-"w-64 mr- ml-3 bg-white  border-r-2 border-b-2 border-black":
-"w-64 mr- ml-3   border-r-0 border-b-0 border-slate-400 "}
+"w-64 mr- ml-3 bg-white  border-r-2 border-b-2 border-black rounded-lg shadow-lg ":
+"w-64 mr- ml-3   border-r-0 border-b-0 border-slate-400 rounded-lg shadow-lg"}
 
                         >
                             
                          <p
-                         className="p-1"
+                         className="p-1 "
                          >
                           
-                          {
-                            MenuBarOption === props.keyName?
-                            definition1[MenuBarOption].definitionES:
-                            ''         
-                          }
+{
+    MenuBarOption === props.keyName && definition1[MenuBarOption] && 'definitionES' in definition1[MenuBarOption] ?
+    definition1[MenuBarOption].definitionES :
+    ''         
+}
                           </p>
                         </div>
 

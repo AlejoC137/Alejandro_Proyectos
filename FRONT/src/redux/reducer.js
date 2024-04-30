@@ -17,7 +17,7 @@ import {
     projectToBePosted: {},
     currentLenguaje: 'ES',
     visitorData:'',
-    MenuBarOption:'',
+    MenuBarOption:'CODE',
     mainProfile:{},
     mainDefinitions:{},
     

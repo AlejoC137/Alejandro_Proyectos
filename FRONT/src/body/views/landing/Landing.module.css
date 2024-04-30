@@ -1,0 +1,38 @@
+.languageButtons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.languageButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+}
+
+.h3 {
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image: radial-gradient(#ff0000 0.8px, #ffffff 0.8px);
+    background-size: 10px 10px;
+}
+
+.hatch2 {
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image: radial-gradient(#000000 0.6px, #ffffff 0.6px);
+    background-size: 10px 10px;
+}
+
+.h4 {
+    color: black;
+}
+
+.border-r-2 {
+    border-right-width: 2px;
+}
+
+.border-b-2 {
+    border-bottom-width: 2px;
+}

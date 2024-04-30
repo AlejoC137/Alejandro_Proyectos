@@ -70,8 +70,8 @@ export function prePostProject(proyectToBePosted) {
 
 
 export function setLenguaje(lenguaje) {
-
-    return function (dispatch) {
+  return function (dispatch) {
+      // console.log(lenguaje);
         try {
   
                     return dispatch({
@@ -79,9 +79,7 @@ export function setLenguaje(lenguaje) {
                         payload: lenguaje,
                
                 })
-                .catch((error) => {
-  console.log(error);             
-   });
+   
         } catch (error) {
             console.log(error.message);
         }

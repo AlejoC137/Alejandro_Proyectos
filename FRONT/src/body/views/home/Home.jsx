@@ -19,11 +19,11 @@ import {
 function Home() {
   
   const dispatch = useDispatch();
-  useEffect( () => {
+  // useEffect( () => {
 
-    dispatch(getMaindefinitions())
+  //   dispatch(getMaindefinitions())
 
-  } , [] );  
+  // } , [] );  
 
     
     const Visitor = useSelector(state => state.visitorData);
