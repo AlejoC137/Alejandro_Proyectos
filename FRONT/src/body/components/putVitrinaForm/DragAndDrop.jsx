@@ -2,8 +2,8 @@ import styles from './DragAndDrop.module.css';
 import { useEffect, useRef, useState } from 'react';
 
 const DragAndDrop = () => {
-  const cloudName = 'denjiview'; // Replace 'your_cloud_name' with your Cloudinary cloud name
-  const cloudPreset = 'itjhsbrs'; // Replace 'your_cloud_name' with your Cloudinary cloud name
+  const cloudName = 'dwcp7dk9h'; // Replace 'your_cloud_name' with your Cloudinary cloud name
+  const cloudPreset = 'psap9znd'; // Replace 'your_cloud_name' with your Cloudinary cloud name
 
   const [dragOver, setDragOver] = useState(false);
   const [droppedFiles, setDroppedFiles] = useState([]);
@@ -38,7 +38,7 @@ const DragAndDrop = () => {
           const formData = new FormData();
           const fields = {
             file,
-            upload_preset: 'itjhsbrs',
+            upload_preset: 'psap9znd',
             tags: ['myphotoalbum-react'],
             multiple: true,
             resource_type: 'image',

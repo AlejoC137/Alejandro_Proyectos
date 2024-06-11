@@ -4,6 +4,7 @@ import  Home  from "./body/views/home/Home.jsx";
 import Landing from './body/views/landing/Landing.jsx';
 import  NewProjectPortal  from "./body/views/newProjectPortal/NewProjectPortal.jsx";
 import  NewProfilePortal  from "./body/views/newProfilePortal/NewProfilePortal.jsx";
+import  NewProyectista  from "./body/views/newProyectista/NewProyectista.jsx";
 import  Detail  from "./body/views/detail/Detail.jsx";
 
 import  PutVitrina  from "./body/views/putVitrina/PutVitrina.jsx";
@@ -28,6 +29,7 @@ const location = useLocation()
         <Route path="/home" element={<Home/>} />
         <Route path="/newproject" element={<NewProjectPortal/>} />
         <Route path="/newprofile" element={<NewProfilePortal/>} />
+        <Route path="/newproyectista" element={<NewProyectista/>} />
         <Route path="/newproducto" element={<NewProductoPortal/>} />
         {/* <Route path="/editproducto" element={<EditProductoPortal/>} /> */}
         <Route path="/editproducto/:id" element={<EditProductoPortal/>} />

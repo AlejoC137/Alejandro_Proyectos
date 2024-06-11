@@ -1,0 +1,78 @@
+/* ProjectForm.css */
+
+/* Form container styles */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Label styles */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Input field styles */
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Submit button styles */
+.form-container button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* AddField component styles (you can adjust these as needed) */
+.add-field {
+  margin-bottom: 15px;
+}
+
+.add-field label {
+  font-weight: bold;
+}
+
+.add-field input[type="text"] {
+  width: 70%;
+  margin-right: 10px;
+}
+
+.add-field button {
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-field button:hover {
+  background-color: #0056b3;
+}

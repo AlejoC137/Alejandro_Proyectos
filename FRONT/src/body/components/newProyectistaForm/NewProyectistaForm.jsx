@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { postProject } from "../../../redux/actions";
+import { postProject } from "../../../redux/actions.js";
 import { useDispatch } from "react-redux";
-import FileUploader from "../../components/putVitrinaForm/FileUploader.jsx";
+import FileUploader from "../putVitrinaForm/FileUploader.jsx";
 import Swal from "sweetalert2";
 import axios from "axios";
-function PreductoForm() {
+function NewProyectistaForm() {
   const cloudName = 'dwcp7dk9h'; // Replace 'your_cloud_name' with your Cloudinary cloud name
   const cloudPreset = 'psap9znd'; // Replace 'your_cloud_name' with your Cloudinary cloud name
 const dispatch = useDispatch()
@@ -28,8 +28,8 @@ const dispatch = useDispatch()
 
   const [formData,setFormData ] = useState({
     // "projectName":'',
-    "type": "menu",
-    "category":'productos',
+    "type": "Proyectista",
+    "category":'Perfiles',
     // "client":'',
     // "team":[],
     // "media":{"img":[],"video":[]},
@@ -49,22 +49,22 @@ const dispatch = useDispatch()
   ];
 
   const staticField = [
-    { order: 1, mainProperty: "NombreES", subProperties: [] },
-    { order: 1, mainProperty: "NombreEN", subProperties: [] },
-    { order: 2, mainProperty: "Precio", subProperties: [] },
-    { order: 3, mainProperty: "DescripcionES", subProperties: [] },
-    { order: 3, mainProperty: "DescripcionEN", subProperties: [] },
+    { order: 1, mainProperty: "Nombre", subProperties: [] },
+    { order: 2, mainProperty: "Apellido", subProperties: [] },
+    { order: 3, mainProperty: "Cargo", subProperties: [] },
+    { order: 4, mainProperty: "Bio", subProperties: [] },
   ];
+
   const selectField = [
-    { order: 2, mainProperty: "TipoES", options: ['Café' , 'Bebidas' , 'Sanduches' , "Desayuno", 'Postres' , 'Panes' , 'NA'] },
-    { order: 2, mainProperty: "TipoEN", options: ['Coffee' , 'Drinks' , 'Sandwitch' , "Breackfast", "Deserts", 'Breads' , 'NA'] },
-    { order: 2, mainProperty: "SubTipoES", options: ['Frío' , 'Caliente' , 'Dulce' , "Salado" , 'NA'] },
-    { order: 2, mainProperty: "SubTipoEN", options: ['Cold' , 'Hot' , 'Sweet' , "Salty" , 'NA'] },
-    { order: 2, mainProperty: "DietaES", options: ['Carnico' , 'Vegetarino' , 'Vegano' , 'NA'] },
-    { order: 2, mainProperty: "DietaEN", options: ['Meat' , 'Vegeterian' , 'Vegan' , 'NA'] },
-    { order: 2, mainProperty: "CuidadoES", options: ['Nueces' , 'Picante' , 'NA'] },
-    { order: 2, mainProperty: "CuidadoEN", options: ['Walnuts' , 'Spice' , 'NA' ] },
-    { order: 2, mainProperty: "Estado", options: ['Activo', 'Inactivo'] },
+    // { order: 2, mainProperty: "TipoES", options: ['Café' , 'Bebidas' , 'Sanduches' , "Desayuno", 'Postres' , 'Panes' , 'NA'] },
+    // { order: 2, mainProperty: "TipoEN", options: ['Coffee' , 'Drinks' , 'Sandwitch' , "Breackfast", "Deserts", 'Breads' , 'NA'] },
+    // { order: 2, mainProperty: "SubTipoES", options: ['Frío' , 'Caliente' , 'Dulce' , "Salado" , 'NA'] },
+    // { order: 2, mainProperty: "SubTipoEN", options: ['Cold' , 'Hot' , 'Sweet' , "Salty" , 'NA'] },
+    // { order: 2, mainProperty: "DietaES", options: ['Carnico' , 'Vegetarino' , 'Vegano' , 'NA'] },
+    // { order: 2, mainProperty: "DietaEN", options: ['Meat' , 'Vegeterian' , 'Vegan' , 'NA'] },
+    // { order: 2, mainProperty: "CuidadoES", options: ['Nueces' , 'Picante' , 'NA'] },
+    // { order: 2, mainProperty: "CuidadoEN", options: ['Walnuts' , 'Spice' , 'NA' ] },
+    // { order: 2, mainProperty: "Estado", options: ['Activo', 'Inactivo'] },
   ];
 
 
@@ -380,4 +380,4 @@ const removeField = (indexToRemove) => {
   );
 }
 
-export default PreductoForm;
+export default NewProyectistaForm;

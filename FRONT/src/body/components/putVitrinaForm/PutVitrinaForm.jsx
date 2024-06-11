@@ -7,13 +7,13 @@ import { patchVitrina ,postProject } from "../../../redux/actions.js";
 function PutVitrinaForm() {
   const [fileName, setFileName] = useState("");
   const [vitrinaImage, setVitrinaImage] = useState("");
-  const [imagePreview, setImagePreview] = useState('https://res.cloudinary.com/denjiview/image/upload/v1710996709/PERCHERO_02-02_g4pqcy.png');
+  const [imagePreview, setImagePreview] = useState('https://res.cloudinary.com/dwcp7dk9h/image/upload/v1710996709/PERCHERO_02-02_g4pqcy.png');
   const [isLoading, setIsLoading] = useState(false);
   const [imageDescription, setImageDescription] = useState('');
   
   const dispatch = useDispatch();
-  const cloudName = 'denjiview'; // Replace 'your_cloud_name' with your Cloudinary cloud name
-  const cloudPreset = 'itjhsbrs'; // Replace 'your_cloud_name' with your Cloudinary cloud name
+  const cloudName = 'dwcp7dk9h'; // Replace 'your_cloud_name' with your Cloudinary cloud name
+  const cloudPreset = 'psap9znd'; // Replace 'your_cloud_name' with your Cloudinary cloud name
 
   const handleDecription = (e) => {
     setImageDescription(e.target.value)

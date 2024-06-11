@@ -176,6 +176,9 @@ export function getMaindefinitions() {
     };
     };
 
+
+
+    
 export function patchVitrina() {
       return async function (dispatch) {
         try {
