@@ -1,4 +1,5 @@
 export const POST_A_PROJECT = "POST_A_PROJECT";
+export const GET_ALL_ITEMS = "GET_ALL_ITEMS";
 export const GET_ALL_PROJECTS = "GET_ALL_PROJECTS";
 export const SET_LENGUAJE = "SET_LENGUAJE";
 export const SET_VISITOR = "SET_VISITOR";

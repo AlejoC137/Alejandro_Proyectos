@@ -1,5 +1,6 @@
 import {
   POST_A_PROJECT,
+  GET_ALL_ITEMS,
   GET_ALL_PROJECTS,
   SET_LENGUAJE,
   SET_VISITOR,
@@ -143,6 +144,22 @@ export function setMenuBarOption(option) {
     };
   }
 
+export function getAllItms() {
+    return async function (dispatch) {
+    
+        try {
+          // /project?collection=soci
+            const items = await axios.get(`/items`);
+            // console.log(projects.data);
+            return dispatch({
+              type: GET_ALL_ITEMS,
+              payload:items.data,
+            });          
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+    };
 export function getMainProfile() {
     return async function (dispatch) {
     
@@ -159,6 +176,8 @@ export function getMainProfile() {
         }
     };
     };
+
+
 export function getMaindefinitions() {
     return async function (dispatch) {
     
@@ -232,6 +251,8 @@ export  async function updateProject(updateData) {
       }
       
     }
+
+
 
 export async function  postProject(projectData) {
       // console.log(projectData);

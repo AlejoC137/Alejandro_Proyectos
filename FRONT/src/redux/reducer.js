@@ -7,7 +7,8 @@ import {
     SET_NAV_OPTION,
     GET_MAIN_PROFILE,
     GET_PROJECTS_BY_ID,
-    GET_MAIN_DEFINITIONS
+    GET_MAIN_DEFINITIONS,
+    GET_ALL_ITEMS
     
   } from "./actions-types";
   
@@ -20,6 +21,7 @@ import {
     MenuBarOption:'CODE',
     mainProfile:{},
     mainDefinitions:{},
+    items:{},
     
     
   };
@@ -38,6 +40,7 @@ import {
             projectById: action.payload,
                     // console.log(action.payload);
         };
+        
         case GET_MAIN_DEFINITIONS:
         return {
             ...state,
