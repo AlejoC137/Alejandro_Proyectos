@@ -33,8 +33,8 @@ const dispatch = useDispatch()
     { order: 1, mainProperty: "Nombre del producto", subProperties: [] },
   ];
   const selectField = [
-    { order: 2, mainProperty: "category", options: ['INGREDIENTE', 'PRODUCCIÓN EXTERNA' , 'PRODUCCIÓN INTERNA' , 'DESECHABLE' , ] },
-    { order: 2, mainProperty: "area", options: ['PANADERIA', 'COMIDA' , 'BEBIDAS' , 'CAFÉ' ,'DESECHABLE' , ] },
+    { order: 2, mainProperty: "category", options: ['INGREDIENTE', 'PRODUCCION EXTERNA' , 'PRODUCCION INTERNA' , 'DESECHABLES' , ] },
+    { order: 2, mainProperty: "area", options: ['PANADERIA', 'COMIDA' , 'BEBIDAS' , 'CAFÉ' ,'DESECHABLES' , ] },
   ];
 
 

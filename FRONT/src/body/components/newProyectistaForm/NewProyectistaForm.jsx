@@ -27,20 +27,17 @@ const dispatch = useDispatch()
 
 
   const [formData,setFormData ] = useState({
-    // "projectName":'',
-    "type": "Proyectista",
-    "category":'Perfiles',
-    // "client":'',
-    // "team":[],
-    // "media":{"img":[],"video":[]},
-    // "descriptions":[],
-    // "projectsDates":[], 
-    // "entryData":[],
-    // "roles":[],
+    "type": "Staff",
+    "category":'Profiles',
+    "Propinas_PP":[],
+    "Propinas_OK":[],
+    "Turno_Activo":[],
+    "Turno_Pasados":[],
+
   });
 
   const ableToAddField = [
-    // { order: 4, mainProperty: "team", subProperties: ["name", "role", "contact"] },
+    // { order: 4, mainProperty: "FUNCIONES", subProperties: ["name", "role", "contact"] },
     // { order: 5, mainProperty: "media.img", subProperties: ["name", "URL", "description"] },
     // { order: 6, mainProperty: "media.video", subProperties: ["name", "URL", "description"] },
     // { order: 7, mainProperty: "descriptions", subProperties: ["name", "type", "description"] },
@@ -51,20 +48,15 @@ const dispatch = useDispatch()
   const staticField = [
     { order: 1, mainProperty: "Nombre", subProperties: [] },
     { order: 2, mainProperty: "Apellido", subProperties: [] },
-    { order: 3, mainProperty: "Cargo", subProperties: [] },
-    { order: 4, mainProperty: "Bio", subProperties: [] },
+    // { order: 3, mainProperty: "Propinas PP", subProperties: [] },
+    // { order: 3, mainProperty: "Propinas OK", subProperties: [] },
+    // { order: 3, mainProperty: "Turno Activo", subProperties: [] },
+    // { order: 3, mainProperty: "Turno Pasados", subProperties: [] },
   ];
-
+  
   const selectField = [
-    // { order: 2, mainProperty: "TipoES", options: ['Café' , 'Bebidas' , 'Sanduches' , "Desayuno", 'Postres' , 'Panes' , 'NA'] },
-    // { order: 2, mainProperty: "TipoEN", options: ['Coffee' , 'Drinks' , 'Sandwitch' , "Breackfast", "Deserts", 'Breads' , 'NA'] },
-    // { order: 2, mainProperty: "SubTipoES", options: ['Frío' , 'Caliente' , 'Dulce' , "Salado" , 'NA'] },
-    // { order: 2, mainProperty: "SubTipoEN", options: ['Cold' , 'Hot' , 'Sweet' , "Salty" , 'NA'] },
-    // { order: 2, mainProperty: "DietaES", options: ['Carnico' , 'Vegetarino' , 'Vegano' , 'NA'] },
-    // { order: 2, mainProperty: "DietaEN", options: ['Meat' , 'Vegeterian' , 'Vegan' , 'NA'] },
-    // { order: 2, mainProperty: "CuidadoES", options: ['Nueces' , 'Picante' , 'NA'] },
-    // { order: 2, mainProperty: "CuidadoEN", options: ['Walnuts' , 'Spice' , 'NA' ] },
-    // { order: 2, mainProperty: "Estado", options: ['Activo', 'Inactivo'] },
+    { order: 3, mainProperty: "Cargo", options: ['Barista JN' , 'Barista SN' , 'Barista TR' , "Cocinero JN", 'Cocinero JN' , 'Cocinero TR' , 'ADMIN 01'  , 'ADMIN 02'] },
+
   ];
 
 
@@ -87,75 +79,11 @@ const dispatch = useDispatch()
   };
   
   
-  const createObjectInCategory = (objConfig) => {
-    const { mainProperty, subProperties } = objConfig;
-  
-    // Dividir la cadena mainProperty para obtener las claves
-    const keys = mainProperty.split('.');
-  
-    // Referencia al objeto formData
-    let target = formData;
-  
-    // Iterar sobre las claves para acceder a la ubicación correcta en el objeto formData
-    for (const key of keys) {
-      target = target[key];
-    }
-  
-    // Crear el nuevo objeto con las propiedades especificadas en subProperties
-    const newObject = {};
-    for (const prop of subProperties) {
-      newObject[prop] = '';
-    }
-  
-    // Agregar el nuevo objeto al lugar correcto dentro de formData
-    target.push(newObject);
-  
-    // Puedes devolver formData si es necesario
-    // return formData;
-    // console.log(formData); ;
-  };
-  const addField = (fieldConfig) => {
-    createObjectInCategory(fieldConfig);
-  
-    const subInputs = fieldConfig.subProperties.map((subProperty, index) => (
-      <div key={index} className="mr-3">
-        <input
-          className="border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
-          type="text"
-          placeholder={getFieldSectionLabel(subProperty)}
-          onBlur={(e) => { handleOnBlur(e.target.value, fieldConfig.mainProperty) }}
-        />
-      </div>
-    ));
-  
-    const fieldKey = fieldConfig.mainProperty;
-    const currentCount = fieldCounters[fieldKey] || 0;
-  
-    const newField = (
-      
-      <div key={fields.length} className={fieldKey}>
-        <p className="ml-3">{getFieldSectionLabel(fieldConfig.mainProperty)} {currentCount + 1}</p>
-        <div className="flex ml-3">
-          {subInputs}
-        </div>
-        <button
-          className="mt-3 ml-3 w-64 h-10 bg-gray-200 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
-          onClick={() => removeField(fields.length)}
-        >
-          ELIMINAR CAMPO
-        </button>
-      </div>
-    );
-  
-    setFields([...fields, newField]);
-    setFieldCounters({ ...fieldCounters, [fieldKey]: currentCount + 1 });
-    console.log(formData);
-  };
+
+
   
   
-const removeField = (indexToRemove) => {
-  setFields(fields.filter((_, index) => index !== indexToRemove));
-};
+
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -167,37 +95,7 @@ const removeField = (indexToRemove) => {
 
   };
 
-  const uploadImage = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-  
-    try {
-      let imageURL;
-      if (
-        vitrinaImage && (
-          vitrinaImage.type === 'image/png' ||
-          vitrinaImage.type === 'image/jpg' ||
-          vitrinaImage.type === 'image/jpeg'
-        )
-      ) {
-        const image = new FormData();
-        image.append('file', vitrinaImage);
-        image.append('cloud_name', `${cloudName}`);
-        image.append('upload_preset', `${cloudPreset}`);
-  
-        const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, image);
-  
-        // Si la carga de la imagen fue exitosa, obtenemos la URL y la almacenamos en formData
-        const imageURL = response.data.url;
-        handleOnBlur(imageURL, 'foto'); // Aquí llamamos a handleOnBlur para agregar la URL al campo de media.img
-      }
-    } catch (error) {
-      console.log(error);
-      Swal.fire('Error al cargar la imagen', error.message, 'error');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+
   
 
   const getFieldSectionLabel = (mainProperty) => {
@@ -331,7 +229,7 @@ const removeField = (indexToRemove) => {
           ))}
 
 
-<div className="flex-row  h-16 ">
+{/* <div className="flex-row  h-16 ">
   <div className="flex">
     <div className="rounded-lg justify-center items-center w-40  border-2 border-emerald-500 m-6">
       <label>Seleccionar imagen:</label>
@@ -354,7 +252,7 @@ const removeField = (indexToRemove) => {
       }
     </div>
   </div>
-</div>
+</div> */}
 
 
 
@@ -368,14 +266,12 @@ const removeField = (indexToRemove) => {
 
         <button
           className="mt-3  border-3 border-solid  border-y-gray-950 ml-3 w-64 h-10 bg-red-200 rounded-md p-2 focus:outline-none focus:border-blue-500"
-        type="submit">ENVIAR PRODUCTO</button>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+        type="submit">REGISTRO STAFF</button>
+
       </form>
-  
+  <br></br>
+  <br></br>
+  <br></br>
     </div>
   );
 }
