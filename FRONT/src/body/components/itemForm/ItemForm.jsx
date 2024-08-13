@@ -31,7 +31,6 @@ const dispatch = useDispatch()
     { order: 5, mainProperty: "Proveedor", subProperties: []},
 
     { order: 1, mainProperty: "Nombre del producto", subProperties: [] },
-  ];
   ];  
   const selectField = [
     { order: 2, mainProperty: "category", options: ['INGREDIENTE', 'PRODUCCION EXTERNA' , 'PRODUCCION INTERNA' , 'DESECHABLES' , ] },
