@@ -1,7 +1,7 @@
 const {
     getAllProjectControler,
     getProjectByKeyControler
-} =  require('../controlers/getProjectControler.js')
+} =  require('../controllers/getProjectControler.js')
 
 
 const getAllProject = async (req,res) => {

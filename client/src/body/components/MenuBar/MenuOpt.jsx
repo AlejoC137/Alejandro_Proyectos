@@ -119,7 +119,7 @@ className={
                          >
                           
 {
-    MenuBarOption === props.keyName && definition1[MenuBarOption] && 'definitionES' in definition1[MenuBarOption] ?
+    MenuBarOption === props.keyName && definition1?.[MenuBarOption]?.definitionES ?
     definition1[MenuBarOption].definitionES :
     ''         
 }

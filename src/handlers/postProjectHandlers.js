@@ -1,6 +1,6 @@
 const {
     postProjectControler
-} =  require('../controlers/postProjectControler.js')
+} =  require('../controllers/postProjectControler.js')
 
 const postProject = async (req,res) => {
     try {
